@@ -8,10 +8,10 @@ public class Inventory {
     public Inventory() {
         daftarBarang = new ArrayList<>();
     }
-    public void tambahBarang(Barang barang) {
+    public void terimaBarang(Barang barang) {
         daftarBarang.add(barang);
     }
-    public void kurangiBarang(String kodeBarang) {
+    public void kurangiBarang(String kodeBarang, int stok) {
         daftarBarang.removeIf(barang -> barang.getKodeBarang().equals(kodeBarang));
     }
     public Barang cariBarang(String kodeBarang) {
