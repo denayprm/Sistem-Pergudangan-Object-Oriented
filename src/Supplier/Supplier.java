@@ -15,11 +15,11 @@ public class Supplier implements DataSupplier {
 
     @Override
     public String showData() {
-        return "==========Data Supplier=======\n" +
-                "ID Supplier: " +idSupplier+ "\n" +
-                "Nama PT: " +namaPT+ "\n" +
-                "No. Telepon: " +noTelp+ "\n" +
-                "Alamat: " +alamat+ "\n" +
+        return "=========Data Supplier=======\n" +
+                "ID Supplier : " +idSupplier+ "\n" +
+                "Nama PT \t: " +namaPT+ "\n" +
+                "No. Telepon : " +noTelp+ "\n" +
+                "Alamat \t\t: " +alamat+ "\n" +
                 "=============================";
     }
 }

@@ -24,9 +24,15 @@ public class Inventory {
         }
         return null;
     }
-    public void tandaTerimaBarang() {
-        for (Barang barang : daftarBarang) {
-            barang.infoBarang();
+    public void tandaTerimaBarang(Barang barang) {
+        System.out.println("=====TANDA TERIMA BARANG=====");
+        try {
+            System.out.println(barang.getSupplier().showData());
+            for (Barang cetak : daftarBarang) {
+                System.out.println(cetak.infoBarang());
+            }
+        } catch (Exception e) {
+            System.out.println("Exception "+e);
         }
     }
 }

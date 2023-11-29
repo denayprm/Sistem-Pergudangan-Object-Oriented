@@ -25,15 +25,26 @@ public class Dashboard {
 
             switch (menu) {
                 case 1:
+                    Inventory inventory = new Inventory();
+                    Gudang gudang = new Gudang();
+
+                    System.out.println("\n=====PENERIMAAN BARANG=====");
+                    System.out.println("\n=====ISI DATA SUPPLIER=====");
+                    System.out.print("ID Supplier : ");
+                    String idSupplier = scanner.nextLine();
+                    System.out.print("Nama PT \t: ");
+                    String namaPT = scanner.nextLine();
+                    System.out.print("No. Telepon : ");
+                    String noTelp = scanner.nextLine();
+                    System.out.print("Alamat \t\t: ");
+                    String alamat = scanner.nextLine();
+                    Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
                     while (true) {
-                        Inventory inventory = new Inventory();
-                        Gudang gudang = new Gudang();
                         Barang barang;
                         id += 1;
                         String kodeBarang = "0" +id;
 
-                        System.out.println("\n=====PENERIMAAN BARANG=====");
-                        System.out.println("\nSilahkan isi form barang");
+                        System.out.println("\n=====ISI DATA BARANG=====");
                         System.out.print("Nama Barang\t\t: ");
                         String namaBarang = scanner.nextLine();
                         System.out.print("Jumlah Barang\t: ");
@@ -46,16 +57,6 @@ public class Dashboard {
                         int kategori = scanner.nextInt();
                         scanner.nextLine();
 
-                        System.out.println("\n=====ISI DATA SUPPLIER=====");
-                        System.out.print("ID Supplier : ");
-                        String idSupplier = scanner.nextLine();
-                        System.out.print("Nama PT \t: ");
-                        String namaPT = scanner.nextLine();
-                        System.out.print("No. Telepon : ");
-                        String noTelp = scanner.nextLine();
-                        System.out.print("Alamat \t\t: ");
-                        String alamat = scanner.nextLine();
-                        Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
 
                         if (kategori == 1) {
                             barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
@@ -75,11 +76,12 @@ public class Dashboard {
                             gudang.simpanBarang(kodeGudang, inventory);
                             System.out.println("Barang telah tersimpan.");
                             System.out.println("Cetak bukti penyimpanan.\n");
-                            inventory.tandaTerimaBarang();
+                            inventory.tandaTerimaBarang(barang);
 //================================Cetak Bukti Penyimpanan=============================================
                             break;
                         }
                     }
+                    break;
                 case 2:
                     System.out.println("\n=====PENGELUARAN BARANG=====");
                     break;

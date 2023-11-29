@@ -27,7 +27,6 @@ public class Pakaian extends Barang {
                 "Nama Barang \t: " +getNamaBarang()+ "\n" +
                 "Stok Barang \t: " +getStok()+ "\n" +
                 "Kategori Barang : " +getKategori()+ "\n" +
-                "=============================\n" +
-                getSupplier().showData();
+                "=============================";
     }
 }
