@@ -1,6 +1,8 @@
 package Sistem;
 
 import Barang.*;
+import Supplier.Supplier;
+
 import java.util.Scanner;
 
 public class Dashboard {
@@ -25,6 +27,7 @@ public class Dashboard {
                 case 1:
                     while (true) {
                         Inventory inventory = new Inventory();
+                        Supplier supplier;
                         id += 1;
                         String kodeBarang = "0" +id;
 
@@ -41,10 +44,15 @@ public class Dashboard {
                         System.out.print("Kategori Pilihan : ");
                         int kategori = scanner.nextInt();
 //====================================================================================================
-                        System.out.print("\nMasukkan ID Supplier : "); // BELUM DIBUAT !!!!!
+                        System.out.print("\nID Supplier : "); // BELUM DIBUAT !!!!!
                         String idSupplier = scanner.nextLine();
-                        System.out.print("Masukkan nama \t: ");
-                        String namaSupplier = scanner.nextLine();
+                        System.out.print("Nama PT \t: ");
+                        String namaPT = scanner.nextLine();
+                        System.out.print("No. Telepon \t: ");
+                        String noTelp = scanner.nextLine();
+                        System.out.print("Alamat \t: ");
+                        String alamat = scanner.nextLine();
+                        supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
 //====================================================================================================
                         if (kategori == 1) {
                             Barang pakaian = new Pakaian(kodeBarang, namaBarang, stok);
