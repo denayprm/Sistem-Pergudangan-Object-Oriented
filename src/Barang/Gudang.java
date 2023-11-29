@@ -11,18 +11,19 @@ public class Gudang {
 
     public Gudang() {
         dataBarang = new HashMap<>();
-    }
-
-    public Gudang(String kodeGudang) {
         this.kodeGudang = "AREA" + kodeGudang;
     }
 
-    public void simpanBarang(String kodeGudang, Inventory inventory, Supplier supplier) {
+    public String getKodeGudang() {
+        return kodeGudang;
+    }
 
-        dataBarang.put(kodeGudang, inventory, supplier);
+    public void simpanBarang(String kodeGudang, Inventory inventory) {
+
+        dataBarang.put(kodeGudang, inventory);
     }
     public void keluarkanBarang(String kodeBarang, Inventory inventory) {
-        dataBarang.remove();
+        dataBarang.remove(kodeBarang, inventory);
     }
     public void tampilkanDaftarBarang() {
         System.out.println(dataBarang);

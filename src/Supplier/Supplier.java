@@ -7,7 +7,7 @@ public class Supplier implements DataSupplier {
     private String alamat;
 
     public Supplier(String idSupplier, String namaPT, String noTelp, String alamat) {
-        this.idSupplier = idSupplier;
+        this.idSupplier = "SP" + idSupplier;
         this.namaPT = namaPT;
         this.noTelp = kodeTelp + noTelp;
         this.alamat = alamat;
@@ -15,9 +15,11 @@ public class Supplier implements DataSupplier {
 
     @Override
     public String showData() {
-        return "ID Supplier: " +idSupplier+
-                "Nama PT: " +namaPT+
-                "No. Telepon: " +noTelp+
-                "Alamat: " +alamat;
+        return "==========Data Supplier=======\n" +
+                "ID Supplier: " +idSupplier+ "\n" +
+                "Nama PT: " +namaPT+ "\n" +
+                "No. Telepon: " +noTelp+ "\n" +
+                "Alamat: " +alamat+ "\n" +
+                "=============================";
     }
 }

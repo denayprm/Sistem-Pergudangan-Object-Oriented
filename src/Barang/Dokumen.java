@@ -21,10 +21,13 @@ public class Dokumen extends Barang {
     }
 
     @Override
-    public void infoBarang() {
-        System.out.println("Kode Barang : " +getKodeBarang()+
-                "Nama Barang : " +getNamaBarang()+
-                "Stok Barang : " +getStok()+
-                "Kategori Barang : " +getKategori());
+    public String infoBarang() {
+        return "=========Data Barang=========\n" +
+                "Kode Barang \t: " +getKodeBarang()+ "\n" +
+                "Nama Barang \t: " +getNamaBarang()+ "\n" +
+                "Stok Barang \t: " +getStok()+ "\n" +
+                "Kategori Barang : " +getKategori()+ "\n" +
+                "=============================\n" +
+                getSupplier().showData();
     }
 }

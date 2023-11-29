@@ -24,9 +24,9 @@ public class Inventory {
         }
         return null;
     }
-    public void tampilkanDaftarBarang() {
+    public void tandaTerimaBarang() {
         for (Barang barang : daftarBarang) {
-            System.out.println(barang);
+            barang.infoBarang();
         }
     }
 }

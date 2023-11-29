@@ -31,5 +31,5 @@ public abstract class Barang {
 
     public abstract void uniqueCode();
 
-    public abstract void infoBarang();
+    public abstract String infoBarang();
 }

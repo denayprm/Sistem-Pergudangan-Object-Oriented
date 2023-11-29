@@ -27,7 +27,7 @@ public class Dashboard {
                 case 1:
                     while (true) {
                         Inventory inventory = new Inventory();
-                        Supplier supplier;
+                        Gudang gudang = new Gudang();
                         Barang barang;
                         id += 1;
                         String kodeBarang = "0" +id;
@@ -44,16 +44,18 @@ public class Dashboard {
                                 "\t3. Bahan Makanan \t4. Dokumen");
                         System.out.print("Kategori Pilihan : ");
                         int kategori = scanner.nextInt();
-//====================================================================================================
-                        System.out.print("\nID Supplier : "); // BELUM DIBUAT !!!!!
+                        scanner.nextLine();
+
+                        System.out.println("\n=====ISI DATA SUPPLIER=====");
+                        System.out.print("ID Supplier : ");
                         String idSupplier = scanner.nextLine();
                         System.out.print("Nama PT \t: ");
                         String namaPT = scanner.nextLine();
-                        System.out.print("No. Telepon \t: ");
+                        System.out.print("No. Telepon : ");
                         String noTelp = scanner.nextLine();
-                        System.out.print("Alamat \t: ");
+                        System.out.print("Alamat \t\t: ");
                         String alamat = scanner.nextLine();
-                        supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
+                        Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
 
                         if (kategori == 1) {
                             barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
@@ -68,9 +70,12 @@ public class Dashboard {
 
                         System.out.print("\n\t+Tambah Barang (y/n): ");
                         String tambahBarang = scanner.nextLine();
-                        if (tambahBarang == "n") {
+                        if (tambahBarang.equals("n")) {
+                            String kodeGudang = "0" + id;
+                            gudang.simpanBarang(kodeGudang, inventory);
                             System.out.println("Barang telah tersimpan.");
-                            System.out.println("Cetak bukti penyimpanan.");
+                            System.out.println("Cetak bukti penyimpanan.\n");
+                            inventory.tandaTerimaBarang();
 //================================Cetak Bukti Penyimpanan=============================================
                             break;
                         }
