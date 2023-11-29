@@ -3,9 +3,9 @@ package Barang;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBarang{
+public class Inventory {
     List<Barang> daftarBarang;
-    public DataBarang() {
+    public Inventory() {
         daftarBarang = new ArrayList<>();
     }
     public void tambahBarang(Barang barang) {

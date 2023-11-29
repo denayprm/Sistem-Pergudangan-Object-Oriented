@@ -24,7 +24,7 @@ public class Dashboard {
             switch (menu) {
                 case 1:
                     while (true) {
-                        DataBarang dataBarang = new DataBarang();
+                        Inventory inventory = new Inventory();
                         String kodeBarang, namaBarang, idSupplier, namaSupplier, tambahBarang;
                         int stok, kategori;
                         id += 1;
@@ -50,16 +50,16 @@ public class Dashboard {
 //====================================================================================================
                         if (kategori == 1) {
                             Barang pakaian = new Pakaian(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(pakaian);
+                            inventory.tambahBarang(pakaian);
                         } else if (kategori == 2) {
                             Barang elektronik = new Elektronik(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(elektronik);
+                            inventory.tambahBarang(elektronik);
                         } else if (kategori == 3) {
                             Barang bahanMakanan = new BahanMakanan(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(bahanMakanan);
+                            inventory.tambahBarang(bahanMakanan);
                         } else {
                             Barang dokumen = new Dokumen(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(dokumen);
+                            inventory.tambahBarang(dokumen);
                         }
 
                         System.out.print("\n\t+Tambah Barang (y/n): ");
