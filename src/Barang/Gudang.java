@@ -1,5 +1,7 @@
 package Barang;
 
+import Supplier.Supplier;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,12 +17,12 @@ public class Gudang {
         this.kodeGudang = "AREA" + kodeGudang;
     }
 
-    public void simpanBarang(String kodeGudang, Inventory inventory) {
+    public void simpanBarang(String kodeGudang, Inventory inventory, Supplier supplier) {
 
-        dataBarang.put(kodeGudang, inventory);
+        dataBarang.put(kodeGudang, inventory, supplier);
     }
     public void keluarkanBarang(String kodeBarang, Inventory inventory) {
-        dataBarang.remove(kodeBarang, inventory);
+        dataBarang.remove();
     }
     public void tampilkanDaftarBarang() {
         System.out.println(dataBarang);

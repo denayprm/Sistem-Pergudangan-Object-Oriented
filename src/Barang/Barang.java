@@ -1,14 +1,18 @@
 package Barang;
 
+import Supplier.Supplier;
+
 public abstract class Barang {
     protected String kodeBarang;
     private String namaBarang;
     private int stok;
+    private Supplier supplier;
 
-    public Barang(String kodeBarang, String namaBarang, int stok) {
+    public Barang(String kodeBarang, String namaBarang, int stok, Supplier supplier) {
         this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
         this.stok = stok;
+        this.supplier = supplier;
     }
 
     public String getKodeBarang() {
@@ -22,6 +26,8 @@ public abstract class Barang {
     public int getStok() {
         return stok;
     }
+
+    public Supplier getSupplier() { return supplier; }
 
     public abstract void uniqueCode();
 

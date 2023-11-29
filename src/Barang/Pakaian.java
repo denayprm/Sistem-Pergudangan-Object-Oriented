@@ -1,9 +1,12 @@
 package Barang;
 
+import Supplier.Supplier;
+
 public class Pakaian extends Barang {
     private String kategori;
-    public Pakaian(String kodeBarang, String namaBarang, int stok) {
-        super(kodeBarang, namaBarang, stok);
+
+    public Pakaian(String kodeBarang, String namaBarang, int stok, Supplier supplier) {
+        super(kodeBarang, namaBarang, stok, supplier);
         this.kategori = "Pakaian";
         uniqueCode();
     }

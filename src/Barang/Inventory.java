@@ -1,5 +1,7 @@
 package Barang;
 
+import Supplier.Supplier;
+
 import java.util.ArrayList;
 import java.util.List;
 

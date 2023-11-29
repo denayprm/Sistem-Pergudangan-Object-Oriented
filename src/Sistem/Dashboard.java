@@ -28,6 +28,7 @@ public class Dashboard {
                     while (true) {
                         Inventory inventory = new Inventory();
                         Supplier supplier;
+                        Barang barang;
                         id += 1;
                         String kodeBarang = "0" +id;
 
@@ -53,20 +54,17 @@ public class Dashboard {
                         System.out.print("Alamat \t: ");
                         String alamat = scanner.nextLine();
                         supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
-//====================================================================================================
+
                         if (kategori == 1) {
-                            Barang pakaian = new Pakaian(kodeBarang, namaBarang, stok);
-                            inventory.terimaBarang(pakaian);
+                            barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 2) {
-                            Barang elektronik = new Elektronik(kodeBarang, namaBarang, stok);
-                            inventory.terimaBarang(elektronik);
+                            barang = new Elektronik(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 3) {
-                            Barang bahanMakanan = new BahanMakanan(kodeBarang, namaBarang, stok);
-                            inventory.terimaBarang(bahanMakanan);
+                            barang = new BahanMakanan(kodeBarang, namaBarang, stok, supplier);
                         } else {
-                            Barang dokumen = new Dokumen(kodeBarang, namaBarang, stok);
-                            inventory.terimaBarang(dokumen);
+                            barang = new Dokumen(kodeBarang, namaBarang, stok, supplier);
                         }
+                        inventory.terimaBarang(barang);
 
                         System.out.print("\n\t+Tambah Barang (y/n): ");
                         String tambahBarang = scanner.nextLine();
