@@ -30,6 +30,6 @@ public abstract class Barang {
     public Supplier getSupplier() { return supplier; }
 
     public abstract void uniqueCode();
-
+    public abstract void kurangiStok(int jumlah);
     public abstract String infoBarang();
 }

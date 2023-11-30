@@ -1,7 +1,5 @@
 package Barang;
 
-import Supplier.Supplier;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +11,14 @@ public class Inventory {
     public void terimaBarang(Barang barang) {
         daftarBarang.add(barang);
     }
-    public void kurangiBarang(String kodeBarang, int stok) {
-        daftarBarang.removeIf(barang -> barang.getKodeBarang().equals(kodeBarang));
+    public void kurangiBarang(Barang barang, boolean isRent, int jumlah) {
+        if (isRent == true) {
+            barang.kurangiStok(jumlah);
+        } else {
+            daftarBarang.remove(barang);
+        }
     }
+
     public Barang cariBarang(String kodeBarang) {
         for (Barang barang : daftarBarang) {
             if (barang.getKodeBarang().equals(kodeBarang)) {

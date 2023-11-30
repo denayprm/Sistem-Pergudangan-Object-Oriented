@@ -21,6 +21,11 @@ public class Dokumen extends Barang {
     }
 
     @Override
+    public void kurangiStok(int jumlah) {
+        this.stok -= jumlah;
+    }
+
+    @Override
     public String infoBarang() {
         return "=========Data Barang=========\n" +
                 "Kode Barang \t: " +getKodeBarang()+ "\n" +
