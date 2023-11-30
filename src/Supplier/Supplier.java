@@ -7,7 +7,7 @@ public class Supplier implements DataSupplier {
     private String alamat;
 
     public Supplier(String idSupplier, String namaPT, String noTelp, String alamat) {
-        this.idSupplier = "SP" + idSupplier;
+        this.idSupplier = kodeId + idSupplier;
         this.namaPT = namaPT;
         this.noTelp = kodeTelp + noTelp;
         this.alamat = alamat;
