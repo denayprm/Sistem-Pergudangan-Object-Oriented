@@ -13,9 +13,16 @@ public class Inventory {
     }
     public void kurangiBarang(Barang barang, boolean isRent, int jumlah) {
         if (isRent == true) {
-            barang.kurangiStok(jumlah);
+            if (jumlah > barang.getStok()) {
+                System.out.println("Jumlah yang dikeluarkan melebihi stok.");
+            } else {
+                barang.kurangiStok(jumlah);
+                System.out.println("Stok telah dikurangi.");
+            }
         } else {
             daftarBarang.remove(barang);
+            System.out.println("Barang dengan kode " + barang.getKodeBarang()+
+                    " berhenti menyewa.");
         }
     }
 
