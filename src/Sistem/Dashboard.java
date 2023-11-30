@@ -2,7 +2,6 @@ package Sistem;
 
 import Barang.*;
 import Supplier.Supplier;
-
 import java.util.Scanner;
 
 public class Dashboard {
@@ -15,7 +14,7 @@ public class Dashboard {
             System.out.println("\nSilahkan pilih menu kelola berikut");
             System.out.println("1. Penerimaan Barang");
             System.out.println("2. Pengeluaran Barang");
-            System.out.println("3. Cek Stok");
+            System.out.println("3. Cari Barang");
             System.out.println("4. Informasi Supplier");
             System.out.println("0. Logout");
             System.out.print("Masukkan pilihan: ");
@@ -73,7 +72,8 @@ public class Dashboard {
                         String tambahBarang = scanner.nextLine();
                         if (tambahBarang.equals("n")) {
                             String kodeGudang = "0" + id;
-                            gudang.simpanBarang(kodeGudang, inventory);
+                            gudang.setKodeGudang(kodeGudang);
+                            gudang.simpanBarang(inventory);
                             System.out.println("Barang telah tersimpan.");
                             System.out.println("Cetak bukti penyimpanan.\n");
                             inventory.tandaTerimaBarang(barang);
@@ -83,10 +83,41 @@ public class Dashboard {
                     }
                     break;
                 case 2:
+                    inventory = new Inventory();
                     System.out.println("\n=====PENGELUARAN BARANG=====");
+                    System.out.print("\nMasukkan kode barang: ");
+                    String kodeBarang = scanner.nextLine();
+                    Barang barang = inventory.cariBarang(kodeBarang);
+                    if (barang != null) {
+                        System.out.println("Barang ditemukan.");
+                        barang.infoBarang();
+                        System.out.println("Pilih tindakan berikut");
+                        System.out.println("1. Kurangi stok \t2. Berhenti menyimpan");
+                        System.out.print("Pilihan : ");
+                        int pilihan = scanner.nextInt();
+                        scanner.nextLine();
+
+                        switch (pilihan) {
+                            case 1 :
+                                System.out.println("Masukkan jumlah yang dikurangi : ");
+                                int jumlah = scanner.nextInt();
+                                scanner.nextLine();
+                                inventory.kurangiBarang(barang, jumlah);
+                                break;
+                            case 2 :
+                                gudang = new Gudang();
+                                gudang.keluarkanBarang(inventory);
+                                inventory.keluarkanBarang(barang);
+                                break;
+                            default :
+                                System.out.println("Invalid option.");
+                        }
+                    } else {
+                        System.out.println("Barang dengan kode: " +kodeBarang+ " tidak ditemukan.");
+                    }
                     break;
                 case 3:
-                    System.out.println("\n=====CEK STOK=====");
+                    System.out.println("\n=====CARI BARANG=====");
                     break;
                 case 4:
                     System.out.println("\n=====INFORMASI SUPPLIER=====");
