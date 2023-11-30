@@ -8,13 +8,14 @@ public class Dashboard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int id = 0;
+        Gudang gudang;
 
         System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
         while (true) {
             System.out.println("\nSilahkan pilih menu kelola berikut");
             System.out.println("1. Penerimaan Barang");
             System.out.println("2. Pengeluaran Barang");
-            System.out.println("3. Cari Barang");
+            System.out.println("3. Data Barang");
             System.out.println("4. Informasi Supplier");
             System.out.println("0. Logout");
             System.out.print("Masukkan pilihan: ");
@@ -25,7 +26,7 @@ public class Dashboard {
             switch (menu) {
                 case 1:
                     Inventory inventory = new Inventory();
-                    Gudang gudang = new Gudang();
+                    gudang = new Gudang();
 
                     System.out.println("\n=====PENERIMAAN BARANG=====");
                     System.out.println("\n=====ISI DATA SUPPLIER=====");
@@ -117,7 +118,8 @@ public class Dashboard {
                     }
                     break;
                 case 3:
-                    System.out.println("\n=====CARI BARANG=====");
+                    System.out.println("\n=====DATA BARANG=====");
+                    gudang.dataGudang();
                     break;
                 case 4:
                     System.out.println("\n=====INFORMASI SUPPLIER=====");

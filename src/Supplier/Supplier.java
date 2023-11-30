@@ -1,25 +1,18 @@
 package Supplier;
 
-public class Supplier implements DataSupplier {
+public class Supplier extends DataSupplier {
     private String idSupplier;
-    private String namaPT;
-    private String noTelp;
-    private String alamat;
 
-    public Supplier(String idSupplier, String namaPT, String noTelp, String alamat) {
-        this.idSupplier = kodeId + idSupplier;
-        this.namaPT = namaPT;
-        this.noTelp = kodeTelp + noTelp;
-        this.alamat = alamat;
+    public Supplier(String idSupplier, String namaPT, String noTelp, String alamatPT) {
+        super(namaPT, noTelp, alamatPT);
+        this.idSupplier = "SP" + idSupplier;
     }
 
     @Override
     public String showData() {
         return "=========Data Supplier=======\n" +
                 "ID Supplier : " +idSupplier+ "\n" +
-                "Nama PT \t: " +namaPT+ "\n" +
-                "No. Telepon : " +noTelp+ "\n" +
-                "Alamat \t\t: " +alamat+ "\n" +
+                super.showData() +
                 "=============================";
     }
 }

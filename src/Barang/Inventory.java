@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    Gudang gudang = new Gudang();
     List<Barang> daftarBarang;
     public Inventory() {
         daftarBarang = new ArrayList<>();
@@ -43,6 +42,12 @@ public class Inventory {
             }
         } catch (Exception e) {
             System.out.println("Exception "+e);
+        }
+    }
+
+    public void dataInventory() {
+        for (Barang barang : daftarBarang) {
+            System.out.println(barang.infoBarang());
         }
     }
 }

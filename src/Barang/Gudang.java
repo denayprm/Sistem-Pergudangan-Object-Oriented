@@ -1,17 +1,16 @@
 package Barang;
 
-import Supplier.Supplier;
-
 import java.util.HashMap;
 import java.util.Map;
+import Supplier.*;
 
 public class Gudang {
-    private Map<String, Inventory> dataBarang;
+    private Map<String, Inventory> dataInventory;
     private String kodeGudang;
     private boolean status;
 
     public Gudang() {
-        dataBarang = new HashMap<>();
+        dataInventory = new HashMap<>();
         this.status = false;
     }
 
@@ -27,13 +26,17 @@ public class Gudang {
     }
 
     public void simpanBarang(Inventory inventory) {
-        dataBarang.put(getKodeGudang(), inventory);
+        dataInventory.put(getKodeGudang(), inventory);
         status = true;
     }
     public void keluarkanBarang(Inventory inventory) {
-        dataBarang.remove(inventory);
+        dataInventory.remove(inventory);
     }
-    public void tampilkanDaftarBarang() {
-        System.out.println(dataBarang);
+    public void dataGudang() {
+        for (String kodeGudang : dataInventory.keySet()) {
+            System.out.println("Kode Gudang : " +kodeGudang);
+            Inventory inventory = dataInventory.get(kodeGudang);
+            inventory.dataInventory();
+        }
     }
 }
