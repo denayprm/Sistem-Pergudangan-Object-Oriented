@@ -1,6 +1,8 @@
 package Sistem;
 
 import Barang.*;
+import Supplier.Supplier;
+
 import java.util.Scanner;
 
 public class Dashboard {
@@ -23,54 +25,63 @@ public class Dashboard {
 
             switch (menu) {
                 case 1:
-                    while (true) {
-                        DataBarang dataBarang = new DataBarang();
-                        String kodeBarang, namaBarang, idSupplier, namaSupplier, tambahBarang;
-                        int stok, kategori;
-                        id += 1;
-                        kodeBarang = "0" +id;
+                    Inventory inventory = new Inventory();
+                    Gudang gudang = new Gudang();
 
-                        System.out.println("\n=====PENERIMAAN BARANG=====");
-                        System.out.println("\nSilahkan isi form barang");
+                    System.out.println("\n=====PENERIMAAN BARANG=====");
+                    System.out.println("\n=====ISI DATA SUPPLIER=====");
+                    System.out.print("ID Supplier : ");
+                    String idSupplier = scanner.nextLine();
+                    System.out.print("Nama PT \t: ");
+                    String namaPT = scanner.nextLine();
+                    System.out.print("No. Telepon : ");
+                    String noTelp = scanner.nextLine();
+                    System.out.print("Alamat \t\t: ");
+                    String alamat = scanner.nextLine();
+                    Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
+                    while (true) {
+                        Barang barang;
+                        id += 1;
+                        String kodeBarang = "0" +id;
+
+                        System.out.println("\n=====ISI DATA BARANG=====");
                         System.out.print("Nama Barang\t\t: ");
-                        namaBarang = scanner.nextLine();
+                        String namaBarang = scanner.nextLine();
                         System.out.print("Jumlah Barang\t: ");
-                        stok = scanner.nextInt();
+                        int stok = scanner.nextInt();
                         scanner.nextLine();
                         System.out.println("Kategori Barang");
                         System.out.println("1. Pakaian \t2. Elektronik " +
                                 "\t3. Bahan Makanan \t4. Dokumen");
                         System.out.print("Kategori Pilihan : ");
-                        kategori = scanner.nextInt();
-//====================================================================================================
-                        System.out.print("\nMasukkan ID Supplier : "); // BELUM DIBUAT !!!!!
-                        idSupplier = scanner.nextLine();
-                        System.out.print("Masukkan nama \t: ");
-                        namaSupplier = scanner.nextLine();
-//====================================================================================================
+                        int kategori = scanner.nextInt();
+                        scanner.nextLine();
+
+
                         if (kategori == 1) {
-                            Barang pakaian = new Pakaian(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(pakaian);
+                            barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 2) {
-                            Barang elektronik = new Elektronik(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(elektronik);
+                            barang = new Elektronik(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 3) {
-                            Barang bahanMakanan = new BahanMakanan(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(bahanMakanan);
+                            barang = new BahanMakanan(kodeBarang, namaBarang, stok, supplier);
                         } else {
-                            Barang dokumen = new Dokumen(kodeBarang, namaBarang, stok);
-                            dataBarang.tambahBarang(dokumen);
+                            barang = new Dokumen(kodeBarang, namaBarang, stok, supplier);
                         }
+                        inventory.terimaBarang(barang);
 
                         System.out.print("\n\t+Tambah Barang (y/n): ");
-                        tambahBarang = scanner.nextLine();
-                        if (tambahBarang == "n") {
+                        String tambahBarang = scanner.nextLine();
+                        if (tambahBarang.equals("n")) {
+                            String kodeGudang = "0" + id;
+                            gudang.simpanBarang(kodeGudang, inventory);
                             System.out.println("Barang telah tersimpan.");
-                            System.out.println("Cetak bukti penyimpanan.");
+                            System.out.println("Cetak bukti penyimpanan.\n");
+                            inventory.tandaTerimaBarang(barang);
 //================================Cetak Bukti Penyimpanan=============================================
                             break;
                         }
                     }
+                    break;
                 case 2:
                     System.out.println("\n=====PENGELUARAN BARANG=====");
                     break;

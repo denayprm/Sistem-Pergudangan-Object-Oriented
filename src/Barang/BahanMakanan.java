@@ -1,9 +1,12 @@
 package Barang;
 
+import Supplier.Supplier;
+
 public class BahanMakanan extends Barang {
     private String kategori;
-    public BahanMakanan(String kodeBarang, String namaBarang, int stok) {
-        super(kodeBarang, namaBarang, stok);
+
+    public BahanMakanan(String kodeBarang, String namaBarang, int stok, Supplier supplier) {
+        super(kodeBarang, namaBarang, stok, supplier);
         this.kategori = "Bahan Makanan";
         uniqueCode();
     }
@@ -18,10 +21,13 @@ public class BahanMakanan extends Barang {
     }
 
     @Override
-    public void infoBarang() {
-        System.out.println("Kode Barang : " +getKodeBarang()+
-                "Nama Barang : " +getNamaBarang()+
-                "Stok Barang : " +getStok()+
-                "Kategori Barang : " +getKategori());
+    public String infoBarang() {
+        return "=========Data Barang=========\n" +
+                "Kode Barang \t: " +getKodeBarang()+ "\n" +
+                "Nama Barang \t: " +getNamaBarang()+ "\n" +
+                "Stok Barang \t: " +getStok()+ "\n" +
+                "Kategori Barang : " +getKategori()+ "\n" +
+                "=============================\n" +
+                getSupplier().showData();
     }
 }
