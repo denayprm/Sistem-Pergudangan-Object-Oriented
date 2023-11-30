@@ -1,6 +1,7 @@
 package Sistem;
 
 import Barang.*;
+import InformasiSupplier.InformasiSupplier;
 import Supplier.Supplier;
 
 import java.util.Scanner;
