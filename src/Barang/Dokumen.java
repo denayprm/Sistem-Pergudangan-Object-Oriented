@@ -17,7 +17,7 @@ public class Dokumen extends Barang {
 
     @Override
     public void uniqueCode() {
-        kodeBarang = "DK" + getKodeBarang();
+        this.kodeBarang = "DK" + getKodeBarang();
     }
 
     @Override
@@ -27,7 +27,6 @@ public class Dokumen extends Barang {
                 "Nama Barang \t: " +getNamaBarang()+ "\n" +
                 "Stok Barang \t: " +getStok()+ "\n" +
                 "Kategori Barang : " +getKategori()+ "\n" +
-                "=============================\n" +
-                getSupplier().showData();
+                "=============================";
     }
 }

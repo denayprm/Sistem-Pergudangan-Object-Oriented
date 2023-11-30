@@ -5,7 +5,7 @@ import Supplier.Supplier;
 public abstract class Barang {
     protected String kodeBarang;
     private String namaBarang;
-    private int stok;
+    protected int stok;
     private Supplier supplier;
 
     public Barang(String kodeBarang, String namaBarang, int stok, Supplier supplier) {

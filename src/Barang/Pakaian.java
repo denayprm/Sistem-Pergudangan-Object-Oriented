@@ -17,7 +17,7 @@ public class Pakaian extends Barang {
 
     @Override
     public void uniqueCode() {
-        kodeBarang = "PK" + getKodeBarang();
+        this.kodeBarang = "PK" + getKodeBarang();
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Elektronik extends Barang {
 
     @Override
     public void uniqueCode() {
-        kodeBarang = "EL" + getKodeBarang();
+        this.kodeBarang = "EL" + getKodeBarang();
     }
 
     @Override
@@ -27,7 +27,6 @@ public class Elektronik extends Barang {
                 "Nama Barang \t: " +getNamaBarang()+ "\n" +
                 "Stok Barang \t: " +getStok()+ "\n" +
                 "Kategori Barang : " +getKategori()+ "\n" +
-                "=============================\n" +
-                getSupplier().showData();
+                "=============================";
     }
 }

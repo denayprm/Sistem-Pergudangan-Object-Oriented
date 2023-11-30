@@ -17,7 +17,7 @@ public class BahanMakanan extends Barang {
 
     @Override
     public void uniqueCode() {
-        kodeBarang = "BM" + getKodeBarang();
+        this.kodeBarang = "BM" + getKodeBarang();
     }
 
     @Override
@@ -27,7 +27,6 @@ public class BahanMakanan extends Barang {
                 "Nama Barang \t: " +getNamaBarang()+ "\n" +
                 "Stok Barang \t: " +getStok()+ "\n" +
                 "Kategori Barang : " +getKategori()+ "\n" +
-                "=============================\n" +
-                getSupplier().showData();
+                "=============================";
     }
 }
