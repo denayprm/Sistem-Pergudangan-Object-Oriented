@@ -1,5 +1,7 @@
 package Barang;
 
+import Supplier.Supplier;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +36,37 @@ public class Inventory {
         return null;
     }
     public void tandaTerimaBarang(Barang barang) {
-        System.out.println("=====TANDA TERIMA BARANG=====");
+        System.out.println("======== TANDA TERIMA BARANG ========");
         try {
             System.out.println(barang.getSupplier().showData());
             for (Barang cetak : daftarBarang) {
                 System.out.println(cetak.infoBarang());
             }
         } catch (Exception e) {
-            System.out.println("Exception "+e);
+            System.out.println("Exception " +e);
         }
     }
 
     public void dataInventory() {
-        for (Barang barang : daftarBarang) {
-            System.out.println(barang.infoBarang());
+        try {
+            for (Barang supplier : daftarBarang) {
+                System.out.println(supplier.getSupplier().showData());
+                for (Barang barang : daftarBarang) {
+                    System.out.println(barang.infoBarang());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Exception " +e);
+        }
+    }
+    public void dataSupplier() {
+        try {
+            for (Barang barang : daftarBarang) {
+                Supplier supplier = barang.getSupplier();
+                System.out.println(supplier.showData());
+            }
+        } catch (Exception e) {
+            System.out.println("Exception " +e);
         }
     }
 }

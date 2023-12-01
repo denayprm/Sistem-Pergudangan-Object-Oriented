@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Dashboard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int id = 0;
-        Gudang gudang;
+        int idPK = 0, idEL = 0, idBM = 0, idDK = 0, idGudang = 0;
+        Gudang gudang = new Gudang();
 
         System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
         while (true) {
@@ -26,7 +26,8 @@ public class Dashboard {
             switch (menu) {
                 case 1:
                     Inventory inventory = new Inventory();
-                    gudang = new Gudang();
+                    idGudang += 1;
+                    String kodeGudang = "0" + idGudang;
 
                     System.out.println("\n=====PENERIMAAN BARANG=====");
                     System.out.println("\n=====ISI DATA SUPPLIER=====");
@@ -41,8 +42,6 @@ public class Dashboard {
                     Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
                     while (true) {
                         Barang barang;
-                        id += 1;
-                        String kodeBarang = "0" +id;
 
                         System.out.println("\n=====ISI DATA BARANG=====");
                         System.out.print("Nama Barang\t\t: ");
@@ -59,12 +58,20 @@ public class Dashboard {
 
 
                         if (kategori == 1) {
+                            idPK += 1;
+                            String kodeBarang = "0" + idPK;
                             barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 2) {
+                            idEL += 1;
+                            String kodeBarang = "0" + idEL;
                             barang = new Elektronik(kodeBarang, namaBarang, stok, supplier);
                         } else if (kategori == 3) {
+                            idBM += 1;
+                            String kodeBarang = "0" + idBM;
                             barang = new BahanMakanan(kodeBarang, namaBarang, stok, supplier);
                         } else {
+                            idDK += 1;
+                            String kodeBarang = "0" + idDK;
                             barang = new Dokumen(kodeBarang, namaBarang, stok, supplier);
                         }
                         inventory.terimaBarang(barang);
@@ -72,13 +79,11 @@ public class Dashboard {
                         System.out.print("\n\t+Tambah Barang (y/n): ");
                         String tambahBarang = scanner.nextLine();
                         if (tambahBarang.equals("n")) {
-                            String kodeGudang = "0" + id;
                             gudang.setKodeGudang(kodeGudang);
                             gudang.simpanBarang(inventory);
                             System.out.println("Barang telah tersimpan.");
                             System.out.println("Cetak bukti penyimpanan.\n");
                             inventory.tandaTerimaBarang(barang);
-//================================Cetak Bukti Penyimpanan=============================================
                             break;
                         }
                     }
@@ -106,7 +111,6 @@ public class Dashboard {
                                 inventory.kurangiBarang(barang, jumlah);
                                 break;
                             case 2 :
-                                gudang = new Gudang();
                                 gudang.keluarkanBarang(inventory);
                                 inventory.keluarkanBarang(barang);
                                 break;
@@ -119,10 +123,11 @@ public class Dashboard {
                     break;
                 case 3:
                     System.out.println("\n=====DATA BARANG=====");
-                    gudang.dataGudang();
+                    gudang.dataBarang();
                     break;
                 case 4:
                     System.out.println("\n=====INFORMASI SUPPLIER=====");
+                    gudang.dataSupplier();
                     break;
                 case 0:
                     scanner.close();

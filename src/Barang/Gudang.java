@@ -32,11 +32,17 @@ public class Gudang {
     public void keluarkanBarang(Inventory inventory) {
         dataInventory.remove(inventory);
     }
-    public void dataGudang() {
+    public void dataBarang() {
         for (String kodeGudang : dataInventory.keySet()) {
-            System.out.println("Kode Gudang : " +kodeGudang);
+            System.out.println("\nKode Gudang : " +kodeGudang);
             Inventory inventory = dataInventory.get(kodeGudang);
             inventory.dataInventory();
+        }
+    }
+    public void dataSupplier() {
+        for (String kodeGudang : dataInventory.keySet()) {
+            Inventory inventory = dataInventory.get(kodeGudang);
+            inventory.dataSupplier();
         }
     }
 }

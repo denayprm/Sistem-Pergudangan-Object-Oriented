@@ -27,11 +27,11 @@ public class BahanMakanan extends Barang {
 
     @Override
     public String infoBarang() {
-        return "=========Data Barang=========\n" +
+        return "============ Data Barang ============\n" +
                 "Kode Barang \t: " +getKodeBarang()+ "\n" +
                 "Nama Barang \t: " +getNamaBarang()+ "\n" +
                 "Stok Barang \t: " +getStok()+ "\n" +
                 "Kategori Barang : " +getKategori()+ "\n" +
-                "=============================";
+                "=====================================";
     }
 }

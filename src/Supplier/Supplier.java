@@ -10,9 +10,9 @@ public class Supplier extends DataSupplier {
 
     @Override
     public String showData() {
-        return "=========Data Supplier=======\n" +
-                "ID Supplier : " +idSupplier+ "\n" +
-                super.showData() +
-                "=============================";
+        return "============ Data Supplier ==========\n" +
+                "ID Supplier \t: " +idSupplier+ "\n" +
+                super.showData() +"\n"+
+                "=====================================";
     }
 }

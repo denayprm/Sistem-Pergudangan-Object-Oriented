@@ -6,14 +6,14 @@ public class DataSupplier {
     protected String alamatPT;
     public DataSupplier(String namaPT, String noTelp, String alamatPT) {
         this.namaPT = namaPT;
-        this.noTelp = noTelp;
+        this.noTelp = "021-" + noTelp;
         this.alamatPT = alamatPT;
     }
 
     public String showData() {
-        return "Nama PT \t: " +namaPT+
-                "No. Telp \t: " +noTelp+
-                "Alamat \t\t: " +alamatPT;
+        return "Nama PT \t\t: " +namaPT+ "\n" +
+                "No. Telp \t\t: " +noTelp+ "\n" +
+                "Alamat \t\t\t: " +alamatPT;
     };
 
 }
