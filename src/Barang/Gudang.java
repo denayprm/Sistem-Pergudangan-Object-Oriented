@@ -2,7 +2,6 @@ package Barang;
 
 import java.util.HashMap;
 import java.util.Map;
-import Supplier.*;
 
 public class Gudang {
     private Map<String, Inventory> dataInventory;
@@ -22,28 +21,34 @@ public class Gudang {
         dataInventory.put(getKodeGudang(), inventory);
     }
 
-    public void keluarkanBarang(Barang barang) {
-        barang = cariBarang(barang.getKodeBarang());
+    public void kurangiBarang(String kodeBarang, int jumlah) {
+        Barang barang = cariBarang(kodeBarang);
         if (barang != null) {
-            Inventory inventory = dataInventory.get(kodeGudang);
-            inventory.berhentiMenyimpan(barang.getKodeBarang());
-            dataInventory.remove(kodeGudang);
+            if (barang.getStok() < jumlah) {
+                System.out.println("Jumlah yang dikeluarkan melebihi stok.");
+            } else {
+                barang.kurangiStok(jumlah);
+                System.out.println("Stok barang berhasil dikurangi sebanyak " + jumlah);
+            }
         } else {
-            System.out.println("Ga ketemu");
+            System.out.println("Barang dengan kode " + kodeBarang +
+                    " tidak ditemukan.");
         }
-
-
-//        if (inventory != null) {
-//            Barang barang = inventory.cariBarang(kodeBarang);
-//            if (barang != null) {
-//                inventory.berhentiMenyimpan(kodeBarang);
-//                System.out.println("Barang dengan kode " + kodeBarang + " berhasil dikeluarkan dari gudang.");
-//            } else {
-//                System.out.println("Barang dengan kode " + kodeBarang + " tidak ditemukan di inventory gudang.");
-//            }
-//        } else {
-//            System.out.println("Gudang tidak ditemukan.");
-//        }
+    }
+    public void keluarkanBarang(Barang barang) {
+        for (String kodeGudang : dataInventory.keySet()) {
+            Inventory inventory = dataInventory.get(kodeGudang);
+            if (inventory.cariBarang(barang.getKodeBarang()) != null) {
+                dataInventory.remove(kodeGudang);
+                inventory.berhentiMenyimpan(barang.getKodeBarang());
+                System.out.println("Barang dengan kode " + barang.getKodeBarang() +
+                        " berhasil dikeluarkan dari gudang.");
+                return;
+            } else {
+                System.out.println("Barang dengan kode " + barang.getKodeBarang() +
+                        " tidak ditemukan di gudang.");
+            }
+        }
     }
 
     public Barang cariBarang(String kodeBarang) {

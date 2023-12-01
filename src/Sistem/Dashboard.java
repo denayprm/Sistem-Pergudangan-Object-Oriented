@@ -9,7 +9,7 @@ public class Dashboard {
         Scanner scanner = new Scanner(System.in);
         int idPK = 0, idEL = 0, idBM = 0, idDK = 0, idGudang = 0;
         Gudang gudang = new Gudang();
-        Inventory inventory;
+        Inventory inventory = new Inventory();
 
         System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
         while (true) {
@@ -31,7 +31,7 @@ public class Dashboard {
                     String kodeGudang = "0" + idGudang;
 
                     System.out.println("\n=====PENERIMAAN BARANG=====");
-                    System.out.println("\n=====ISI DATA SUPPLIER=====");
+                    System.out.println("=====ISI DATA SUPPLIER=====");
                     System.out.print("ID Supplier : ");
                     String idSupplier = scanner.nextLine();
                     System.out.print("Nama PT \t: ");
@@ -109,7 +109,7 @@ public class Dashboard {
                                 System.out.print("Masukkan jumlah yang dikurangi : ");
                                 int jumlah = scanner.nextInt();
                                 scanner.nextLine();
-                                barang.kurangiStok(jumlah);
+                                gudang.kurangiBarang(barang.getKodeBarang(), jumlah);
                                 break;
                             case 2 :
                                 gudang.keluarkanBarang(barang);
