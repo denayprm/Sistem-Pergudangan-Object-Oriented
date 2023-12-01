@@ -9,6 +9,7 @@ public class Dashboard {
         Scanner scanner = new Scanner(System.in);
         int idPK = 0, idEL = 0, idBM = 0, idDK = 0, idGudang = 0;
         Gudang gudang = new Gudang();
+        Inventory inventory;
 
         System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
         while (true) {
@@ -25,7 +26,7 @@ public class Dashboard {
 
             switch (menu) {
                 case 1:
-                    Inventory inventory = new Inventory();
+                    inventory = new Inventory();
                     idGudang += 1;
                     String kodeGudang = "0" + idGudang;
 
@@ -90,13 +91,14 @@ public class Dashboard {
                     break;
                 case 2:
                     System.out.println("\n=====PENGELUARAN BARANG=====");
-                    System.out.print("\nMasukkan kode barang: ");
+                    System.out.print("Masukkan kode barang: ");
                     String kodeBarang = scanner.nextLine();
-                    Barang barang = inventory.cariBarang(kodeBarang);
+                    Barang barang = gudang.cariBarang(kodeBarang);
+
                     if (barang != null) {
                         System.out.println("Barang ditemukan.");
-                        barang.infoBarang();
-                        System.out.println("Pilih tindakan berikut");
+                        System.out.println(barang.infoBarang());
+                        System.out.println("\nPilih tindakan berikut");
                         System.out.println("1. Kurangi stok \t2. Berhenti menyimpan");
                         System.out.print("Pilihan : ");
                         int pilihan = scanner.nextInt();
@@ -104,14 +106,13 @@ public class Dashboard {
 
                         switch (pilihan) {
                             case 1 :
-                                System.out.println("Masukkan jumlah yang dikurangi : ");
+                                System.out.print("Masukkan jumlah yang dikurangi : ");
                                 int jumlah = scanner.nextInt();
                                 scanner.nextLine();
-                                inventory.kurangiBarang(barang, jumlah);
+                                barang.kurangiStok(jumlah);
                                 break;
                             case 2 :
-                                gudang.keluarkanBarang(inventory);
-                                inventory.berhentiMenyimpan(barang);
+                                gudang.keluarkanBarang(barang);
                                 break;
                             default :
                                 System.out.println("Invalid option.");
