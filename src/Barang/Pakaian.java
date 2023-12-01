@@ -27,7 +27,8 @@ public class Pakaian extends Barang {
                     "stok.");
         } else {
             this.stok -= jumlah;
-            System.out.println("Stok telah dikurangi.");
+            System.out.println("Stok telah dikurangi.\n");
+            System.out.println(infoBarang());
         }
     }
 

@@ -23,9 +23,14 @@ public class Gudang {
     }
 
     public void keluarkanBarang(Barang barang) {
-        Inventory inventory = dataInventory.get(kodeGudang);
-        inventory.berhentiMenyimpan(barang.getKodeBarang());
-        dataInventory.remove(kodeGudang);
+        barang = cariBarang(barang.getKodeBarang());
+        if (barang != null) {
+            Inventory inventory = dataInventory.get(kodeGudang);
+            inventory.berhentiMenyimpan(barang.getKodeBarang());
+            dataInventory.remove(kodeGudang);
+        } else {
+            System.out.println("Ga ketemu");
+        }
 
 
 //        if (inventory != null) {

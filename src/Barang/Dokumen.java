@@ -22,7 +22,14 @@ public class Dokumen extends Barang {
 
     @Override
     public void kurangiStok(int jumlah) {
-        this.stok -= jumlah;
+        if (jumlah > getStok()) {
+            System.out.println("Jumlah yang dikeluarkan melebihi " +
+                    "stok.");
+        } else {
+            this.stok -= jumlah;
+            System.out.println("Stok telah dikurangi.\n");
+            System.out.println(infoBarang());
+        }
     }
 
     @Override

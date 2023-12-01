@@ -126,7 +126,7 @@ public class Dashboard {
                     gudang.dataBarang();
                     break;
                 case 4:
-                    System.out.println("\n=====INFORMASI SUPPLIER=====");
+                    System.out.println("\n========= INFORMASI SUPPLIER ========");
                     gudang.dataSupplier();
                     break;
                 case 0:
