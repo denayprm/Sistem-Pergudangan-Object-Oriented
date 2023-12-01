@@ -5,8 +5,8 @@ import Supplier.Supplier;
 public class Dokumen extends Barang {
     private String kategori;
 
-    public Dokumen(String kodeBarang, String namaBarang, int stok, Supplier supplier) {
-        super(kodeBarang, namaBarang, stok, supplier);
+    public Dokumen(String kodeBarang, String namaBarang, int stok) {
+        super(kodeBarang, namaBarang, stok);
         this.kategori = "Elektronik";
         uniqueCode();
     }

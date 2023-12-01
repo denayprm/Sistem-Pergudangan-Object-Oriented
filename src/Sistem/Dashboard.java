@@ -40,6 +40,7 @@ public class Dashboard {
                     System.out.print("Alamat \t\t: ");
                     String alamat = scanner.nextLine();
                     Supplier supplier = new Supplier(idSupplier, namaPT, noTelp, alamat);
+
                     while (true) {
                         Barang barang;
 
@@ -56,40 +57,38 @@ public class Dashboard {
                         int kategori = scanner.nextInt();
                         scanner.nextLine();
 
-
                         if (kategori == 1) {
                             idPK += 1;
                             String kodeBarang = "0" + idPK;
-                            barang = new Pakaian(kodeBarang, namaBarang, stok, supplier);
+                            barang = new Pakaian(kodeBarang, namaBarang, stok);
                         } else if (kategori == 2) {
                             idEL += 1;
                             String kodeBarang = "0" + idEL;
-                            barang = new Elektronik(kodeBarang, namaBarang, stok, supplier);
+                            barang = new Elektronik(kodeBarang, namaBarang, stok);
                         } else if (kategori == 3) {
                             idBM += 1;
                             String kodeBarang = "0" + idBM;
-                            barang = new BahanMakanan(kodeBarang, namaBarang, stok, supplier);
+                            barang = new BahanMakanan(kodeBarang, namaBarang, stok);
                         } else {
                             idDK += 1;
                             String kodeBarang = "0" + idDK;
-                            barang = new Dokumen(kodeBarang, namaBarang, stok, supplier);
+                            barang = new Dokumen(kodeBarang, namaBarang, stok);
                         }
-                        inventory.terimaBarang(barang);
+                        inventory.terimaBarang(supplier, barang);
 
                         System.out.print("\n\t+Tambah Barang (y/n): ");
                         String tambahBarang = scanner.nextLine();
                         if (tambahBarang.equals("n")) {
                             gudang.setKodeGudang(kodeGudang);
                             gudang.simpanBarang(inventory);
-                            System.out.println("Barang telah tersimpan.");
-                            System.out.println("Cetak bukti penyimpanan.\n");
-                            inventory.tandaTerimaBarang(barang);
+                            System.out.println("Barang telah tersimpan.\n");
+                            System.out.println("======== TANDA TERIMA BARANG ========");
+                            inventory.tampilkanData();
                             break;
                         }
                     }
                     break;
                 case 2:
-                    inventory = new Inventory();
                     System.out.println("\n=====PENGELUARAN BARANG=====");
                     System.out.print("\nMasukkan kode barang: ");
                     String kodeBarang = scanner.nextLine();
@@ -112,7 +111,7 @@ public class Dashboard {
                                 break;
                             case 2 :
                                 gudang.keluarkanBarang(inventory);
-                                inventory.keluarkanBarang(barang);
+                                inventory.berhentiMenyimpan(barang);
                                 break;
                             default :
                                 System.out.println("Invalid option.");

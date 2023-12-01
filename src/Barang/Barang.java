@@ -6,13 +6,11 @@ public abstract class Barang {
     protected String kodeBarang;
     private String namaBarang;
     protected int stok;
-    private Supplier supplier;
 
-    public Barang(String kodeBarang, String namaBarang, int stok, Supplier supplier) {
+    public Barang(String kodeBarang, String namaBarang, int stok) {
         this.kodeBarang = kodeBarang;
         this.namaBarang = namaBarang;
         this.stok = stok;
-        this.supplier = supplier;
     }
 
     public String getKodeBarang() {
@@ -27,7 +25,6 @@ public abstract class Barang {
         return stok;
     }
 
-    public Supplier getSupplier() { return supplier; }
 
     public abstract void uniqueCode();
     public abstract void kurangiStok(int jumlah);

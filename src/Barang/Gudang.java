@@ -7,11 +7,9 @@ import Supplier.*;
 public class Gudang {
     private Map<String, Inventory> dataInventory;
     private String kodeGudang;
-    private boolean status;
 
     public Gudang() {
-        dataInventory = new HashMap<>();
-        this.status = false;
+        this.dataInventory = new HashMap<>();
     }
 
     public void setKodeGudang(String kodeGudang) {
@@ -21,13 +19,9 @@ public class Gudang {
         return kodeGudang;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
 
     public void simpanBarang(Inventory inventory) {
         dataInventory.put(getKodeGudang(), inventory);
-        status = true;
     }
     public void keluarkanBarang(Inventory inventory) {
         dataInventory.remove(inventory);
@@ -36,7 +30,7 @@ public class Gudang {
         for (String kodeGudang : dataInventory.keySet()) {
             System.out.println("\nKode Gudang : " +kodeGudang);
             Inventory inventory = dataInventory.get(kodeGudang);
-            inventory.dataInventory();
+            inventory.tampilkanData();
         }
     }
     public void dataSupplier() {
