@@ -1,20 +1,14 @@
 package Barang;
 
-import Supplier.Supplier;
-
 public class Dokumen extends Barang {
-    private String kategori;
-
+    private final String kategori = "Dokumen";
     public Dokumen(String kodeBarang, String namaBarang, int stok) {
         super(kodeBarang, namaBarang, stok);
-        this.kategori = "Elektronik";
         uniqueCode();
     }
-
     public String getKategori() {
         return kategori;
     }
-
     @Override
     public void uniqueCode() {
         this.kodeBarang = "DK" + getKodeBarang();
