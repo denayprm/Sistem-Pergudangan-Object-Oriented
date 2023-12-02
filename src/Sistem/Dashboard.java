@@ -1,5 +1,6 @@
 package Sistem;
 
+import Admin.Admin;
 import Barang.*;
 import Supplier.Supplier;
 import Warehouse.*;
@@ -9,16 +10,29 @@ import java.util.Scanner;
 public class Dashboard implements DashboardInterface {
     static Scanner scanner = new Scanner(System.in);
     private int idPK = 0, idEL = 0, idBM = 0, idDK = 0, idGudang = 0;
-
+    protected String username, password;
     public static void main(String[] args) {
         Dashboard dashboard = new Dashboard();
-        dashboard.landingPage();
+        Admin admin = new Admin();
+        System.out.println("\n=====================");
+        System.out.println("      INDOGUDANG   ");
+        System.out.println("=====================");
+        try {
+            while (true) {
+                boolean authentication = dashboard.login(admin);
+                if (authentication == true) {
+                    dashboard.landingPage();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Exception: " +e);
+        }
     }
 
     public void landingPage() {
         Gudang gudang = new Gudang();
 
-        System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
+        System.out.println("\n==== SELAMAT DATANG DI INDOGUDANG ====");
         while (true) {
             System.out.println("\nSilahkan pilih menu kelola berikut");
             System.out.println("1. Penerimaan Barang");
@@ -50,6 +64,17 @@ public class Dashboard implements DashboardInterface {
                     System.out.println("\n=====NOT FOUND=====");
             }
         }
+    }
+
+    public boolean login(Admin admin) {
+        System.out.println("\n  ===== LOGIN =====");
+        // Username = "admin"
+        System.out.print("Username : ");
+        username = scanner.nextLine();
+        // Password = "12345678"
+        System.out.print("Password : ");
+        password = scanner.nextLine();
+        return admin.login(username, password);
     }
 
     @Override
