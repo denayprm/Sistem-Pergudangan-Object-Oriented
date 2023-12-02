@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Inventory {
-    private Map<Supplier, List<Barang>> daftarBarang;
-
+    Map<Supplier, List<Barang>> daftarBarang;
     public Inventory() {
         this.daftarBarang = new HashMap<>();
     }
@@ -25,23 +24,12 @@ public class Inventory {
         }
     }
 
-    public void kurangiBarang(Barang barang, int jumlah) {
-        if (jumlah > barang.getStok()) {
-            System.out.println("Jumlah yang dikeluarkan melebihi stok.");
-        } else {
-            barang.kurangiStok(jumlah);
-            System.out.println("Stok barang berhasil dikurangi sebanyak " + jumlah);
-        }
-    }
-
     public void berhentiMenyimpan(String kodeBarang) {
         Barang barang = cariBarang(kodeBarang);
         if (barang != null) {
             for (Supplier supplier : daftarBarang.keySet()) {
                 List<Barang> listBarang = daftarBarang.get(supplier);
                 if (listBarang.remove(barang)) {
-                    System.out.println("Barang dengan kode " + barang.getKodeBarang() +
-                            " berhenti menyimpan.");
                     if (listBarang.isEmpty()) {
                         daftarBarang.remove(supplier);
                         System.out.println("Supplier berhenti menyimpan barang");
@@ -49,9 +37,6 @@ public class Inventory {
                     return;
                 }
             }
-            System.out.println("Barang dengan kode " + kodeBarang + " tidak ditemukan.");
-        } else {
-            System.out.println("Barang dengan kode " + kodeBarang + " tidak ditemukan.");
         }
     }
 
@@ -71,6 +56,7 @@ public class Inventory {
             System.out.println(supplier.showData());
         }
     }
+
     public void tampilkanData() {
         try {
             for (Supplier supplier : daftarBarang.keySet()) {

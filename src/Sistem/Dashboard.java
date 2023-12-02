@@ -9,7 +9,6 @@ public class Dashboard {
         Scanner scanner = new Scanner(System.in);
         int idPK = 0, idEL = 0, idBM = 0, idDK = 0, idGudang = 0;
         Gudang gudang = new Gudang();
-        Inventory inventory = new Inventory();
 
         System.out.println("=====SELAMAT DATANG DI SISTEM GUDANG=====");
         while (true) {
@@ -26,7 +25,7 @@ public class Dashboard {
 
             switch (menu) {
                 case 1:
-                    inventory = new Inventory();
+                    Inventory inventory = new Inventory();
                     idGudang += 1;
                     String kodeGudang = "0" + idGudang;
 
@@ -96,7 +95,7 @@ public class Dashboard {
                     Barang barang = gudang.cariBarang(kodeBarang);
 
                     if (barang != null) {
-                        System.out.println("Barang ditemukan.");
+                        System.out.println("Barang dengan kode: " +kodeBarang+ " ditemukan.");
                         System.out.println(barang.infoBarang());
                         System.out.println("\nPilih tindakan berikut");
                         System.out.println("1. Kurangi stok \t2. Berhenti menyimpan");

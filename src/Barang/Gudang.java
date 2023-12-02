@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Gudang {
-    private Map<String, Inventory> dataInventory;
+    Map<String, Inventory> dataInventory;
     private String kodeGudang;
 
     public Gudang() {
@@ -40,15 +40,13 @@ public class Gudang {
             Inventory inventory = dataInventory.get(kodeGudang);
             if (inventory.cariBarang(barang.getKodeBarang()) != null) {
                 dataInventory.remove(kodeGudang);
-                inventory.berhentiMenyimpan(barang.getKodeBarang());
                 System.out.println("Barang dengan kode " + barang.getKodeBarang() +
                         " berhasil dikeluarkan dari gudang.");
                 return;
-            } else {
-                System.out.println("Barang dengan kode " + barang.getKodeBarang() +
-                        " tidak ditemukan di gudang.");
             }
         }
+        System.out.println("Barang dengan kode " + barang.getKodeBarang() +
+                " tidak ditemukan di gudang.");
     }
 
     public Barang cariBarang(String kodeBarang) {
@@ -66,7 +64,9 @@ public class Gudang {
             System.out.println("\nKode Gudang : " +kodeGudang);
             Inventory inventory = dataInventory.get(kodeGudang);
             inventory.tampilkanData();
+            return;
         }
+        System.out.println("Belum ada yang disimpan.");
     }
     public void dataSupplier() {
         for (String kodeGudang : dataInventory.keySet()) {

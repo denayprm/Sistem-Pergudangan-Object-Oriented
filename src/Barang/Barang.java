@@ -1,7 +1,5 @@
 package Barang;
 
-import Supplier.Supplier;
-
 public abstract class Barang {
     protected String kodeBarang;
     private String namaBarang;
