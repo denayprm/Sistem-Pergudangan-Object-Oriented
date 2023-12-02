@@ -38,17 +38,21 @@ public class Gudang {
     }
 
     public void keluarkanBarang(Barang barang) {
-        for (String kodeGudang : dataInventory.keySet()) {
-            Inventory inventory = dataInventory.get(kodeGudang);
-            if (inventory.cariBarang(barang.getKodeBarang()) != null) {
-                dataInventory.remove(kodeGudang);
-                System.out.println("Barang dengan kode " + barang.getKodeBarang() +
-                        " berhasil dikeluarkan dari gudang.");
-                return;
+        try {
+            for (String kodeGudang : dataInventory.keySet()) {
+                Inventory inventory = dataInventory.get(kodeGudang);
+                if (inventory.cariBarang(barang.getKodeBarang()) != null) {
+                    dataInventory.remove(kodeGudang);
+                    System.out.println("Barang dengan kode " + barang.getKodeBarang() +
+                            " berhasil dikeluarkan dari gudang.");
+                    return;
+                }
             }
+            System.out.println("Barang dengan kode " + barang.getKodeBarang() +
+                    " tidak ditemukan di gudang.");
+        } catch (Exception e) {
+            System.out.println("Exception: " +e);
         }
-        System.out.println("Barang dengan kode " + barang.getKodeBarang() +
-                " tidak ditemukan di gudang.");
     }
 
     public Barang cariBarang(String kodeBarang) {

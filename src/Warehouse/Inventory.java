@@ -25,22 +25,6 @@ public class Inventory {
         }
     }
 
-    public void berhentiMenyimpan(String kodeBarang) {
-        Barang barang = cariBarang(kodeBarang);
-        if (barang != null) {
-            for (Supplier supplier : daftarBarang.keySet()) {
-                List<Barang> listBarang = daftarBarang.get(supplier);
-                if (listBarang.remove(barang)) {
-                    if (listBarang.isEmpty()) {
-                        daftarBarang.remove(supplier);
-                        System.out.println("Supplier berhenti menyimpan barang");
-                    }
-                    return;
-                }
-            }
-        }
-    }
-
     public Barang cariBarang(String kodeBarang) {
         for (List<Barang> listBarang : daftarBarang.values()) {
             for (Barang barang : listBarang) {
