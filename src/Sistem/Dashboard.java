@@ -2,6 +2,9 @@ package Sistem;
 
 import Barang.*;
 import Supplier.Supplier;
+import Warehouse.Gudang;
+import Warehouse.Inventory;
+
 import java.util.Scanner;
 
 public class Dashboard {
@@ -44,7 +47,7 @@ public class Dashboard {
                     while (true) {
                         Barang barang;
 
-                        System.out.println("\n=====ISI DATA BARANG=====");
+                        System.out.println("\n  ======== ISI DATA BARANG ========");
                         System.out.print("Nama Barang\t\t: ");
                         String namaBarang = scanner.nextLine();
                         System.out.print("Jumlah Barang\t: ");
@@ -89,9 +92,9 @@ public class Dashboard {
                     }
                     break;
                 case 2:
-                    System.out.println("\n=====PENGELUARAN BARANG=====");
+                    System.out.println("\n  ====== PENGELUARAN BARANG =======");
                     System.out.print("Masukkan kode barang: ");
-                    String kodeBarang = scanner.nextLine();
+                    String kodeBarang = scanner.nextLine().toUpperCase();
                     Barang barang = gudang.cariBarang(kodeBarang);
 
                     if (barang != null) {
@@ -111,7 +114,13 @@ public class Dashboard {
                                 gudang.kurangiBarang(barang.getKodeBarang(), jumlah);
                                 break;
                             case 2 :
-                                gudang.keluarkanBarang(barang);
+                                System.out.println("Apakah kamu yakin ingin berhenti menyimpan: ");
+                                System.out.print("1. Oke \t2. Cancel \nPilihan: ");
+                                int agreement = scanner.nextInt();
+                                scanner.nextLine();
+                                if (agreement == 1) {
+                                    gudang.keluarkanBarang(barang);
+                                }
                                 break;
                             default :
                                 System.out.println("Invalid option.");
@@ -121,11 +130,11 @@ public class Dashboard {
                     }
                     break;
                 case 3:
-                    System.out.println("\n=====DATA BARANG=====");
+                    System.out.println("\n   ========= DATA BARANG =========");
                     gudang.dataBarang();
                     break;
                 case 4:
-                    System.out.println("\n========= INFORMASI SUPPLIER ========");
+                    System.out.println("\n   ====== INFORMASI SUPPLIER =====");
                     gudang.dataSupplier();
                     break;
                 case 0:

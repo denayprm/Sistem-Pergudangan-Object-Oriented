@@ -1,4 +1,6 @@
-package Barang;
+package Warehouse;
+
+import Barang.Barang;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,17 +8,16 @@ import java.util.Map;
 public class Gudang {
     Map<String, Inventory> dataInventory;
     private String kodeGudang;
-
     public Gudang() {
         this.dataInventory = new HashMap<>();
     }
-
     public void setKodeGudang(String kodeGudang) {
         this.kodeGudang = "AREA" + kodeGudang;
     }
     public String getKodeGudang() {
         return kodeGudang;
     }
+
     public void simpanBarang(Inventory inventory) {
         dataInventory.put(getKodeGudang(), inventory);
     }
@@ -35,6 +36,7 @@ public class Gudang {
                     " tidak ditemukan.");
         }
     }
+
     public void keluarkanBarang(Barang barang) {
         for (String kodeGudang : dataInventory.keySet()) {
             Inventory inventory = dataInventory.get(kodeGudang);
@@ -59,15 +61,15 @@ public class Gudang {
         }
         return null;
     }
+
     public void dataBarang() {
         for (String kodeGudang : dataInventory.keySet()) {
             System.out.println("\nKode Gudang : " +kodeGudang);
             Inventory inventory = dataInventory.get(kodeGudang);
             inventory.tampilkanData();
-            return;
         }
-        System.out.println("Belum ada yang disimpan.");
     }
+
     public void dataSupplier() {
         for (String kodeGudang : dataInventory.keySet()) {
             Inventory inventory = dataInventory.get(kodeGudang);

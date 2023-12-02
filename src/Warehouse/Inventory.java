@@ -1,5 +1,6 @@
-package Barang;
+package Warehouse;
 
+import Barang.Barang;
 import Supplier.Supplier;
 
 import java.util.ArrayList;
