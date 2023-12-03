@@ -23,10 +23,11 @@ public class LoginPage extends JFrame {
 
     public LoginPage() {
         setContentPane(LoginPanel);
-        setTitle("INDOGUDANG APP");
+        setTitle("IndoGudang.com/login");
         setSize(700,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -118,7 +119,8 @@ public class LoginPage extends JFrame {
         String password = new String(passwordField.getPassword());
 
         if (users.containsKey(username) && users.get(username).equals(password)) {
-            System.out.println("Aku login.");
+            HomePage homePage = new HomePage();
+            SwingUtilities.getWindowAncestor(LoginPanel).dispose();
         } else {
             JOptionPane.showMessageDialog(
                     this,
