@@ -1,5 +1,6 @@
 package InformasiSupplier;
 
+
 public class DataSuplier extends Supplier {
     private String alamatSupplier;
     private String noTelpSupplier;
