@@ -1,33 +1,105 @@
 package InformasiSupplier;
 
+import com.mysql.cj.xdevapi.JsonArray;
+import com.mysql.cj.xdevapi.JsonValue;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-public class MainInformasiSupplier {
+
+public class MainInformasiSupplier extends  JFrame {
     private JRadioButton rbBahanMakanan;
     private JRadioButton rbDokumen;
     private JRadioButton rbElektronik;
     private JRadioButton rbPakaian;
     private JRadioButton rbSemuanya;
-    private JComboBox comboBox1;
-    private JTable table2;
-    private JTable table1;
-
+    private JPanel MainInformasiSupplierPanel;
+    private JTextPane tpDataSupplier1;
+    private static final String userFile = "DataSupplier.json";
+    private JSONArray dataSupplier;
 
     public MainInformasiSupplier() {
+        setContentPane(MainInformasiSupplierPanel);
+        setTitle("Informasi Supplier");
+        setSize(800,600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setLocationRelativeTo(null);
+
+
         rbBahanMakanan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (rbBahanMakanan.isSelected()) {
-
-                } else {
-
+                    updateTpDataSupplier1("Makanan");
                 }
             }
         });
+        rbDokumen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (rbDokumen.isSelected()) {
+                    updateTpDataSupplier1("Dokumen");
+                }
+            }
+        });
+        rbElektronik.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (rbElektronik.isSelected()) {
+                    updateTpDataSupplier1("Elektronik");
+                }
+            }
+        });
+        rbPakaian.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (rbPakaian.isSelected()) {
+                    updateTpDataSupplier1("Pakaian");
+                }
+            }
+        });
+    }
+    private void loadSupplierData() {
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(userFile)));
+            dataSupplier = new JSONArray(content);
+        } catch (IOException e) {
+            dataSupplier = new JSONArray();
+        }
+    }
+    private void updateTpDataSupplier1(String category) {
+        loadSupplierData();
+        StringBuilder dataSupplierText = new StringBuilder();
+
+        for (int i = 0; i < dataSupplier.length(); i++) {
+            JSONObject supplier = dataSupplier.getJSONObject(i);
+            String supplierCategory = supplier.getString("jenisProduk"); // Menggunakan "jenisProduk" dari JSON
+
+            // Cek apakah kategori sesuai dengan yang dipilih
+            if (supplierCategory.equals(category)) {
+                // Ambil data yang sesuai dan tambahkan ke StringBuilder
+                dataSupplierText.append("ID Supplier: ").append(supplier.getString("idSupplier")).append("\n");
+                dataSupplierText.append("Nama Supplier: ").append(supplier.getString("namaSupplier")).append("\n");
+                dataSupplierText.append("Alamat Supplier: ").append(supplier.getString("alamatSupplier")).append("\n");
+                dataSupplierText.append("No. Telepon Supplier: ").append(supplier.getString("noTelpSupplier")).append("\n");
+                dataSupplierText.append("Jenis Produk: ").append(supplier.getString("jenisProduk")).append("\n");
+                dataSupplierText.append("Info Pembayaran: ").append(supplier.getString("infoPembayaran")).append("\n\n");
+
+            }
+        }
+
+        tpDataSupplier1.setText(dataSupplierText.toString());
+    }
+
+
+    public static void main(String[] args) {
+        new MainInformasiSupplier();
     }
 }

@@ -1,0 +1,34 @@
+[
+  {
+    "idSupplier" : "SP01",
+    "namaSupplier" :"PT. Indofood Indonesia",
+    "alamatSupplier" : "Sudirman Plaza Indofood Tower",
+    "noTelpSupplier" : "02111223434",
+    "jenisProduk" : "Makanan",
+    "infoPembayaran" : "Transfer Bank"
+  },
+  {
+    "idSupplier" : "SP02",
+    "namaSupplier" : "PT. Earphone",
+    "alamatSupplier" : "Cengkareng",
+    "noTelpSupplier" : "02154547896",
+    "jenisProduk" : "Elektronik",
+    "infoPembayaran" : "Transfer Bank"
+  },
+  {
+    "idSupplier" : "SP03",
+    "namaSupplier" : "PT. Gudangku",
+    "alamatSupplier" : "Jakarta veldrome",
+    "noTelpSupplier" : "0213456987",
+    "jenisProduk" : "Dokumen",
+    "infoPembayaran" : "Transfer Bank"
+  },
+  {
+    "idSupplier" : "SP04",
+    "namaSupplier" : "PT. Batik Indonesia",
+    "alamatSupplier" : "Planet Bekasi",
+    "noTelpSupplier" : "01212783695",
+    "jenisProduk" : "Pakaian",
+    "infoPembayaran" : "Transfer Bank"
+  }
+]
