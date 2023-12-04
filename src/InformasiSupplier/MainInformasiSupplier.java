@@ -84,27 +84,26 @@ public class MainInformasiSupplier extends  JFrame {
         loadSupplierData();
         StringBuilder dataSupplierText = new StringBuilder();
 
+        int nomorSupplier = 1;
+
         for (int i = 0; i < dataSupplier.length(); i++) {
             JSONObject supplier = dataSupplier.getJSONObject(i);
-            String supplierCategory = supplier.getString("jenisProduk"); // Menggunakan "jenisProduk" dari JSON
+            String supplierCategory = supplier.getString("jenisProduk");
 
-            // Cek apakah kategori sesuai dengan yang dipilih
             if (category.equals("Semuanya") || supplierCategory.equals(category)) {
                 // Ambil data yang sesuai dan tambahkan ke StringBuilder
+                dataSupplierText.append("Data Supplier\t\t: ").append(nomorSupplier).append("\n");
                 dataSupplierText.append("ID Supplier\t\t: ").append(supplier.getString("idSupplier")).append("\n");
                 dataSupplierText.append("Nama Supplier\t\t: ").append(supplier.getString("namaSupplier")).append("\n");
                 dataSupplierText.append("Alamat Supplier\t: ").append(supplier.getString("alamatSupplier")).append("\n");
                 dataSupplierText.append("No. Telepon Supplier\t: ").append(supplier.getString("noTelpSupplier")).append("\n");
                 dataSupplierText.append("Jenis Produk\t\t: ").append(supplier.getString("jenisProduk")).append("\n");
                 dataSupplierText.append("Info Pembayaran\t: ").append(supplier.getString("infoPembayaran")).append("\n\n");
-
+                nomorSupplier++; // Inkrementasi penomoran
             }
         }
-
         tpDataSupplier1.setText(dataSupplierText.toString());
     }
-
-
     public static void main(String[] args) {
         new MainInformasiSupplier();
     }
