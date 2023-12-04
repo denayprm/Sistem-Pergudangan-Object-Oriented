@@ -2,6 +2,8 @@ package App;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -41,13 +43,22 @@ public class HomePage extends JFrame {
                 barangMasukButton.setContentAreaFilled(false); // Menandakan bahwa area konten tidak perlu diisi
             }
         });
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BarangMasukPage barangMasuk = new BarangMasukPage();
+                SwingUtilities.getWindowAncestor(HomePanel).dispose();
+            }
+        };
+        barangMasukNav.addActionListener(listener);
+        barangMasukButton.addActionListener(listener);
     }
 
     private void createUIComponents() {
         ImageIcon imageLogo = new ImageIcon("logo-indogudang.png");
         Image setLogo = imageLogo.getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT);
         logo = new JLabel(new ImageIcon(setLogo));
-
-
     }
 }
+
