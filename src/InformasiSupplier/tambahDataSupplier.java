@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.FileWriter;
@@ -14,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class tambahDataSupplier extends JFrame {
-
     private JPanel tambahDataSupplierPanel;
     private JTextField tfIdSupplier;
     private JTextField tfNamaPerusahaan;
@@ -34,68 +31,47 @@ public class tambahDataSupplier extends JFrame {
         setContentPane(tambahDataSupplierPanel);
         setTitle("Tambah Data Supplier");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
 
-        loadDataSupplier(); // Load existing data on initialization
-
-        tfIdSupplier.addActionListener(e -> {
-            // aksi untuk memasukkan data yang diisi ke array JSON dari DataSupplier.json sebagai value dengan key idSupplier
-            // contoh implementasi:
-            // dataSupplier.getJSONObject(0).put("idSupplier", tfIdSupplier.getText());
-        });
-
-        tfNamaPerusahaan.addActionListener(e -> {
-            // aksi untuk memasukkan data yang diisi ke array JSON dari DataSupplier.json sebagai value dengan key namaSupplier
-            // contoh implementasi:
-            // dataSupplier.getJSONObject(0).put("namaSupplier", tfNamaPerusahaan.getText());
-        });
-
-        // Implementasi serupa untuk tfAlamatPerusahaan, tfNomorTelepon, rbMakanan, rbDokumen, rbElektronik, rbPakaian, dan tfInfoPembayaran
+        prosesDataSupplier();
 
         tbSimpan.addActionListener(e -> {
-            // aksi untuk memasukkan semua data yang dimasukkan di input di atas untuk dijadikan satu array baru JSON dari DataSupplier.json dengan format yang sama
-            saveDataSupplier();
-            displayDataPreview();
+            simpanDataSupplier();
+            tampilDataPreview();
 
-            // Mengosongkan nilai dari komponen inputan
             tfIdSupplier.setText("");
             tfNamaPerusahaan.setText("");
             tfAlamatPerusahaan.setText("");
             tfNomorTelepon.setText("");
             tfInfoPembayaran.setText("");
 
-            // Menghilangkan seleksi pada RadioButton
             rbMakanan.setSelected(false);
             rbDokumen.setSelected(false);
             rbElektronik.setSelected(false);
             rbPakaian.setSelected(false);
         });
 
-
         tpDataPreview.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                // Menampilkan data preview untuk data array yang telah dimasukkan ke file DataSupplier.json terbaru
-                displayDataPreview();
+                tampilDataPreview();
             }
         });
     }
 
-    private void loadDataSupplier() {
+    private void prosesDataSupplier() {
         try {
-            // Membaca file JSON dan mengubahnya menjadi JSONArray
             String content = new String(Files.readAllBytes(Paths.get(userFile)));
             dataSupplier = new JSONArray(content);
         } catch (IOException e) {
-            // Jika file tidak ditemukan, inisialisasi dataSupplier dengan array kosong
             dataSupplier = new JSONArray();
         }
     }
 
-    private void saveDataSupplier() {
+    private void simpanDataSupplier() {
         JSONObject newData = new JSONObject();
         newData.put("idSupplier", tfIdSupplier.getText());
         newData.put("namaSupplier", tfNamaPerusahaan.getText());
@@ -109,10 +85,8 @@ public class tambahDataSupplier extends JFrame {
 
         newData.put("infoPembayaran", tfInfoPembayaran.getText());
 
-        // Menambahkan data baru ke dalam array dataSupplier
         dataSupplier.put(newData);
 
-        // Menyimpan array dataSupplier ke dalam file JSON
         try (FileWriter file = new FileWriter(userFile)) {
             file.write(dataSupplier.toString());
             file.flush();
@@ -121,8 +95,7 @@ public class tambahDataSupplier extends JFrame {
         }
     }
 
-    private void displayDataPreview() {
-        // Menampilkan hanya key dan value dari data terakhir yang dimasukkan
+    private void tampilDataPreview() {
         JSONObject lastData = dataSupplier.length() > 0 ? dataSupplier.getJSONObject(dataSupplier.length() - 1) : new JSONObject();
 
         StringBuilder previewText = new StringBuilder();
@@ -135,13 +108,11 @@ public class tambahDataSupplier extends JFrame {
         previewText.append(formatKeyValue("Jenis Produk", lastData.optString("jenisProduk", "")));
         previewText.append(formatKeyValue("Info Pembayaran", lastData.optString("infoPembayaran", "")));
 
-        // Menampilkan data preview pada JTextPane
         tpDataPreview.setText(previewText.toString());
     }
 
-    // Metode helper untuk memformat key dan value
     private String formatKeyValue(String key, String value) {
-        return String.format("%-30s: %s\n", key, value);
+        return String.format("%-15s : %s\n", key, value);
     }
     public static void main(String[] args) {
         new tambahDataSupplier();

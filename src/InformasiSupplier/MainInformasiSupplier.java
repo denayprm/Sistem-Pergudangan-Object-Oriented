@@ -1,7 +1,5 @@
 package InformasiSupplier;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import com.mysql.cj.xdevapi.JsonValue;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 
 public class MainInformasiSupplier extends  JFrame {
     private JRadioButton rbBahanMakanan;
@@ -28,9 +25,10 @@ public class MainInformasiSupplier extends  JFrame {
         setContentPane(MainInformasiSupplierPanel);
         setTitle("Informasi Supplier");
         setSize(800,600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
+
         rbBahanMakanan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +70,7 @@ public class MainInformasiSupplier extends  JFrame {
             }
         });
     }
+
     private void loadSupplierData() {
         try {
             String content = new String(Files.readAllBytes(Paths.get(userFile)));
@@ -80,18 +79,16 @@ public class MainInformasiSupplier extends  JFrame {
             dataSupplier = new JSONArray();
         }
     }
+
     private void updateTpDataSupplier1(String category) {
         loadSupplierData();
         StringBuilder dataSupplierText = new StringBuilder();
-
         int nomorSupplier = 1;
-
         for (int i = 0; i < dataSupplier.length(); i++) {
             JSONObject supplier = dataSupplier.getJSONObject(i);
             String supplierCategory = supplier.getString("jenisProduk");
 
             if (category.equals("Semuanya") || supplierCategory.equals(category)) {
-                // Ambil data yang sesuai dan tambahkan ke StringBuilder
                 dataSupplierText.append("Data Supplier\t\t: ").append(nomorSupplier).append("\n");
                 dataSupplierText.append("ID Supplier\t\t: ").append(supplier.getString("idSupplier")).append("\n");
                 dataSupplierText.append("Nama Supplier\t\t: ").append(supplier.getString("namaSupplier")).append("\n");
@@ -99,7 +96,7 @@ public class MainInformasiSupplier extends  JFrame {
                 dataSupplierText.append("No. Telepon Supplier\t: ").append(supplier.getString("noTelpSupplier")).append("\n");
                 dataSupplierText.append("Jenis Produk\t\t: ").append(supplier.getString("jenisProduk")).append("\n");
                 dataSupplierText.append("Info Pembayaran\t: ").append(supplier.getString("infoPembayaran")).append("\n\n");
-                nomorSupplier++; // Inkrementasi penomoran
+                nomorSupplier++;
             }
         }
         tpDataSupplier1.setText(dataSupplierText.toString());
