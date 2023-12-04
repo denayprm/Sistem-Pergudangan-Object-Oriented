@@ -91,12 +91,12 @@ public class MainInformasiSupplier extends  JFrame {
             // Cek apakah kategori sesuai dengan yang dipilih
             if (category.equals("Semuanya") || supplierCategory.equals(category)) {
                 // Ambil data yang sesuai dan tambahkan ke StringBuilder
-                dataSupplierText.append("ID Supplier: ").append(supplier.getString("idSupplier")).append("\n");
-                dataSupplierText.append("Nama Supplier: ").append(supplier.getString("namaSupplier")).append("\n");
-                dataSupplierText.append("Alamat Supplier: ").append(supplier.getString("alamatSupplier")).append("\n");
-                dataSupplierText.append("No. Telepon Supplier: ").append(supplier.getString("noTelpSupplier")).append("\n");
-                dataSupplierText.append("Jenis Produk: ").append(supplier.getString("jenisProduk")).append("\n");
-                dataSupplierText.append("Info Pembayaran: ").append(supplier.getString("infoPembayaran")).append("\n\n");
+                dataSupplierText.append("ID Supplier\t\t: ").append(supplier.getString("idSupplier")).append("\n");
+                dataSupplierText.append("Nama Supplier\t\t: ").append(supplier.getString("namaSupplier")).append("\n");
+                dataSupplierText.append("Alamat Supplier\t: ").append(supplier.getString("alamatSupplier")).append("\n");
+                dataSupplierText.append("No. Telepon Supplier\t: ").append(supplier.getString("noTelpSupplier")).append("\n");
+                dataSupplierText.append("Jenis Produk\t\t: ").append(supplier.getString("jenisProduk")).append("\n");
+                dataSupplierText.append("Info Pembayaran\t: ").append(supplier.getString("infoPembayaran")).append("\n\n");
 
             }
         }
