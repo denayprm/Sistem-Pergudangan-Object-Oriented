@@ -90,6 +90,27 @@ public class BarangMasukPage extends JFrame {
         });
 
         getConnection();
+        barangKeluarNav.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BarangKeluarPage barangKeluarPage = new BarangKeluarPage();
+                SwingUtilities.getWindowAncestor(barangMasukPanel).dispose();
+            }
+        });
+        dataBarangNav.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DataBarangPage dataBarangPage = new DataBarangPage();
+                SwingUtilities.getWindowAncestor(barangMasukPanel).dispose();
+            }
+        });
+        informasiSupplierNav.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InformasiSupplierPage informasiSupplierPage = new InformasiSupplierPage();
+                SwingUtilities.getWindowAncestor(barangMasukPanel).dispose();
+            }
+        });
     }
 
     private void createUIComponents() {

@@ -183,7 +183,7 @@
             </constraints>
             <properties>
               <foreground color="-11640421"/>
-              <text value="Selamat datang di Aplikas Pengelola Gudang"/>
+              <text value="Selamat datang di Aplikasi Pengelola Gudang"/>
             </properties>
           </component>
         </children>
