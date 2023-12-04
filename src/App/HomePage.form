@@ -151,17 +151,11 @@
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="23c78" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <vspacer id="71645">
             <constraints>
-              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <background color="-11910045"/>
-            </properties>
-            <border type="none"/>
-            <children/>
-          </grid>
+          </vspacer>
         </children>
       </grid>
       <component id="c3aa6" class="javax.swing.JLabel">

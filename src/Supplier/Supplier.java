@@ -8,6 +8,10 @@ public class Supplier extends DataSupplier {
         this.idSupplier = "SP" + idSupplier;
     }
 
+    public String getIdSupplier() {
+        return idSupplier;
+    }
+
     @Override
     public String showData() {
         return "============ Data Supplier ==========\n" +

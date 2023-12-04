@@ -42,6 +42,19 @@ public class LoginPage extends JFrame {
                 signup();
             }
         });
+        usernameField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                passwordField.requestFocus();
+            }
+        });
+        passwordField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                login();
+            }
+        });
+
         getConnection();
     }
 
@@ -119,8 +132,9 @@ public class LoginPage extends JFrame {
         String password = new String(passwordField.getPassword());
 
         if (users.containsKey(username) && users.get(username).equals(password)) {
-            HomePage homePage = new HomePage();
             SwingUtilities.getWindowAncestor(LoginPanel).dispose();
+            HomePage homePage = new HomePage();
+            homePage.loginSuccessNotif();
         } else {
             JOptionPane.showMessageDialog(
                     this,
@@ -129,6 +143,7 @@ public class LoginPage extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void signup() {
         String newUsername = usernameField.getText();
         String newPassword = new String(passwordField.getPassword());

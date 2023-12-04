@@ -34,20 +34,40 @@ public class HomePage extends JFrame {
         barangMasukButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                barangMasukButton.setContentAreaFilled(true); // Menandakan bahwa area konten harus diisi
-                barangMasukButton.setBackground(Color.LIGHT_GRAY); // Warna latar belakang ketika mouse masuk
+                barangMasukButton.setContentAreaFilled(true);
+                barangMasukButton.setBackground(Color.LIGHT_GRAY);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                barangMasukButton.setContentAreaFilled(false); // Menandakan bahwa area konten tidak perlu diisi
+                barangMasukButton.setContentAreaFilled(false);
+            }
+        });
+
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showOptionDialog(
+                        HomePage.this,
+                        "Apakah anda yakin ingin keluar?" ,
+                        "Keluar",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        new Object[]{"OK", "CANCEL"},
+                        "OK"
+                );
+                if (result == JOptionPane.OK_OPTION) {
+                    LoginPage loginPage = new LoginPage();
+                    SwingUtilities.getWindowAncestor(HomePanel).dispose();
+                }
             }
         });
 
         ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BarangMasukPage barangMasuk = new BarangMasukPage();
+                BarangMasukPage barangMasukPage = new BarangMasukPage();
                 SwingUtilities.getWindowAncestor(HomePanel).dispose();
             }
         };
@@ -59,6 +79,21 @@ public class HomePage extends JFrame {
         ImageIcon imageLogo = new ImageIcon("logo-indogudang.png");
         Image setLogo = imageLogo.getImage().getScaledInstance(100, 50, Image.SCALE_DEFAULT);
         logo = new JLabel(new ImageIcon(setLogo));
+    }
+
+    public void loginSuccessNotif() {
+        UIManager.put("OptionPane.background", Color.decode("#04BF79"));
+        UIManager.put("OptionPane.messageForeground", Color.BLACK);
+        UIManager.put("Panel.background", Color.decode("#04BF79"));
+        JOptionPane.showMessageDialog(
+                this,
+                "Login Success",
+                "Login",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        UIManager.put("OptionPane.background", UIManager.getColor("control"));
+        UIManager.put("OptionPane.messageForeground", UIManager.getColor("OptionPane.messageForeground"));
+        UIManager.put("Panel.background", UIManager.getColor("OptionPane.background"));
     }
 }
 

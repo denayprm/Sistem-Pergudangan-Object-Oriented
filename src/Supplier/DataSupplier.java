@@ -10,6 +10,10 @@ public class DataSupplier {
         this.alamatPT = alamatPT;
     }
 
+    public String getNoTelp() {
+        return noTelp;
+    }
+
     public String showData() {
         return "Nama PT \t\t: " +namaPT+ "\n" +
                 "No. Telp \t\t: " +noTelp+ "\n" +
