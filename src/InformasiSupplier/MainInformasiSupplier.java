@@ -31,8 +31,6 @@ public class MainInformasiSupplier extends  JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
-
-
         rbBahanMakanan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,6 +63,14 @@ public class MainInformasiSupplier extends  JFrame {
                 }
             }
         });
+        rbSemuanya.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (rbSemuanya.isSelected()) {
+                    updateTpDataSupplier1("Semuanya");
+                }
+            }
+        });
     }
     private void loadSupplierData() {
         try {
@@ -83,7 +89,7 @@ public class MainInformasiSupplier extends  JFrame {
             String supplierCategory = supplier.getString("jenisProduk"); // Menggunakan "jenisProduk" dari JSON
 
             // Cek apakah kategori sesuai dengan yang dipilih
-            if (supplierCategory.equals(category)) {
+            if (category.equals("Semuanya") || supplierCategory.equals(category)) {
                 // Ambil data yang sesuai dan tambahkan ke StringBuilder
                 dataSupplierText.append("ID Supplier: ").append(supplier.getString("idSupplier")).append("\n");
                 dataSupplierText.append("Nama Supplier: ").append(supplier.getString("namaSupplier")).append("\n");
