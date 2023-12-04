@@ -13,7 +13,7 @@ public class InformasiSupplier extends JFrame {
         setContentPane(informasiSupplierPanel);
         setTitle("Menu Informasi Supplier");
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
 
@@ -30,7 +30,11 @@ public class InformasiSupplier extends JFrame {
             }
         });
     }
+    public void showInformation() {
+        System.out.println("Informasi Supplier!");
+        SwingUtilities.invokeLater(() -> new InformasiSupplier());    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new InformasiSupplier());
     }
+
 }

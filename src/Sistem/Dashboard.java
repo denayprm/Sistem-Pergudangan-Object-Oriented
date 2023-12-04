@@ -1,9 +1,13 @@
 package Sistem;
 
 import Barang.*;
+import InformasiSupplier.InformasiSupplier;
 import Supplier.Supplier;
 
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Dashboard {
     public static void main(String[] args) {
@@ -90,6 +94,9 @@ public class Dashboard {
                     break;
                 case 4:
                     System.out.println("\n=====INFORMASI SUPPLIER=====");
+                    InformasiSupplier informasiSupplier = new InformasiSupplier();
+
+                    informasiSupplier.showInformation();
                     break;
                 case 0:
                     scanner.close();
