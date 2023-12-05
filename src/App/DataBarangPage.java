@@ -31,8 +31,8 @@ public class DataBarangPage extends JFrame {
         setLocationRelativeTo(null);
 
         getConnection();
-
         displayDataBarang();
+
         berandaNav.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,28 +104,24 @@ public class DataBarangPage extends JFrame {
         DefaultTableModel model = new DefaultTableModel();
         dataBarangTable.setModel(model);
 
-        model.addColumn("id_supplier");
+        model.addColumn("nomor");
         model.addColumn("kode_barang");
-        model.addColumn("nama_pt");
         model.addColumn("nama_barang");
         model.addColumn("stok_barang");
         model.addColumn("kategori_barang");
 
         try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT s.id_supplier, b.kode_barang, s.nama_pt, b.nama_barang," +
-                        "b.stok_barang, b.kategori_barang " +
-                        "FROM supplier s LEFT JOIN barang b ON s.nomor = b.nomor;")) {
+                "SELECT * FROM barang;")) {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                String idSupplier = result.getString("id_supplier");
+                int nomor = result.getInt("nomor");
                 String kodeBarang = result.getString("kode_barang");
-                String namaPt = result.getString("nama_pt");
                 String namaBarang = result.getString("nama_barang");
                 int stok = result.getInt("stok_barang");
                 String kategori = result.getString("kategori_barang");
 
-                model.addRow(new Object[]{idSupplier, kodeBarang, namaPt, namaBarang, stok, kategori});
+                model.addRow(new Object[]{nomor, kodeBarang, namaBarang, stok, kategori});
             }
         } catch (SQLException e) {
             e.printStackTrace();

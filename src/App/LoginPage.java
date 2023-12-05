@@ -58,16 +58,16 @@ public class LoginPage extends JFrame {
         getConnection();
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new LoginPage();
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            try {
+//                new LoginPage();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//
+//            }
+//        });
+//    }
 
     private void createUIComponents() {
         ImageIcon imageLogo = new ImageIcon("logo-indogudang.png");

@@ -24,6 +24,8 @@ public class BarangKeluarPage extends JFrame {
     private JTextField jumlahField;
     private JButton saveButton;
     private JButton cancelButton;
+    private JRadioButton kurangiStokRadioButton;
+    private JRadioButton keluarkanBarangRadioButton;
     private JComboBox opsiComboBox;
     private Connection connection;
 
@@ -35,11 +37,15 @@ public class BarangKeluarPage extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
 
+        DefaultTableModel model = new DefaultTableModel();
+        getConnection();
+        displayDataBarang(model);
+
         addPlaceHolder("Masukkan kode barang...", searchField);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchBarang();
+                searchBarang(model);
             }
         });
 
@@ -87,14 +93,7 @@ public class BarangKeluarPage extends JFrame {
         searchField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchBarang();
-            }
-        });
-
-        opsiComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Selected: " +opsiComboBox.getSelectedItem());
+                searchBarang(model);
             }
         });
 
@@ -104,8 +103,6 @@ public class BarangKeluarPage extends JFrame {
                 cancel();
             }
         });
-
-        getConnection();
 
         dataBarangNav.addActionListener(new ActionListener() {
             @Override
@@ -121,6 +118,20 @@ public class BarangKeluarPage extends JFrame {
                 SwingUtilities.getWindowAncestor(barangKeluarPanel).dispose();
             }
         });
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (kurangiStokRadioButton.isSelected()) {
+                    jumlahField.setEnabled(true);
+                    jumlahField.setEditable(true);
+                } else {
+                    jumlahField.setEnabled(false);
+                    jumlahField.setEditable(false);
+                }
+            }
+        };
+        kurangiStokRadioButton.addActionListener(listener);
+        keluarkanBarangRadioButton.addActionListener(listener);
     }
 
     private void getConnection() {
@@ -145,28 +156,22 @@ public class BarangKeluarPage extends JFrame {
         opsiComboBox.addItem("Keluarkan Barang");
     }
 
-    private void searchBarang() {
+    private void searchBarang(DefaultTableModel model) {
         String kodeBarang = searchField.getText();
+
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT * FROM barang WHERE kode_barang = ?")) {
             statement.setString(1, kodeBarang);
             ResultSet result = statement.executeQuery();
 
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("Kode Barang");
-            model.addColumn("Nama Barang");
-            model.addColumn("Stok");
-            model.addColumn("Kategori");
-
-            dataBarangTable.setModel(model);
-
             if (result.next()) {
+                int nomor = result.getInt("nomor");
                 String kodeBarangResult = result.getString("kode_barang");
                 String namaBarangResult = result.getString("nama_barang");
                 int stokResult = result.getInt("stok_barang");
                 String kategoriResult = result.getString("kategori_barang");
 
-                model.addRow(new Object[]{kodeBarangResult, namaBarangResult, stokResult, kategoriResult});
+                model.addRow(new Object[]{nomor, kodeBarangResult, namaBarangResult, stokResult, kategoriResult});
             } else {
                 JOptionPane.showMessageDialog(
                         this,
@@ -180,16 +185,23 @@ public class BarangKeluarPage extends JFrame {
         }
     }
 
+    private void displayDataBarang(DefaultTableModel model) {
+        dataBarangTable.setModel(model);
+
+        model.addColumn("nomor");
+        model.addColumn("kode_barang");
+        model.addColumn("nama_barang");
+        model.addColumn("stok_barang");
+        model.addColumn("kategori_barang");
+    }
+
     private void saveData() {
-        String selectedComboBox = (String) opsiComboBox.getSelectedItem();
-        if ("Kurangi Stok".equals(selectedComboBox)) {
-            System.out.println("isi: " +selectedComboBox);
-            jumlahField.setEnabled(true);
+        if (kurangiStokRadioButton.isSelected()) {
+            System.out.println("Pilihan: " +kurangiStokRadioButton.getText());
             jumlahField.setEditable(true);
             kurangiStok();
-        } else if ("Keluarkan Barang".equals(selectedComboBox)) {
-            System.out.println("isi: " +selectedComboBox);
-            jumlahField.setEnabled(false);
+        } else {
+            System.out.println("Pilihan: " +kurangiStokRadioButton.getText());
             jumlahField.setEditable(false);
             keluarkanBarang();
         }
@@ -265,7 +277,7 @@ public class BarangKeluarPage extends JFrame {
                         "Keluarkan Barang Success.",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-                LoginPage loginPage = new LoginPage();
+                HomePage homePage = new HomePage();
                 SwingUtilities.getWindowAncestor(barangKeluarPanel).dispose();
             }
         } catch (SQLException e) {

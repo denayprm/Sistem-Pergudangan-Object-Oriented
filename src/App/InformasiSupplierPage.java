@@ -10,13 +10,13 @@ import java.sql.*;
 public class InformasiSupplierPage extends JFrame {
     private JPanel infoSupplierPanel;
     private JLabel logo;
+    private JScrollPane dataSupplierScrollPanel;
     private JButton berandaNav;
     private JButton barangMasukNav;
     private JButton barangKeluarNav;
     private JButton dataBarangNav;
     private JButton logoutButton;
     private JButton informasiSupplierNav;
-    private JScrollPane dataSupplierScrollPanel;
     private JTable dataSupplierTable;
     private Connection connection;
 
