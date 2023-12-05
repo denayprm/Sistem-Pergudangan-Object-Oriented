@@ -161,39 +161,6 @@ public class BarangMasukPage extends JFrame {
         }
     }
 
-//    private void createTriggerCode(String id) {
-//        try (Statement statement = connection.createStatement()) {
-//            String createTrigger = "DELIMITER //" +
-//                    "CREATE TRIGGER IF NOT EXISTS uniqueCode" +id+
-//                    "BEFORE INSERT ON barang" +
-//                    "FOR EACH ROW" +
-//                    "BEGIN" +
-//                    "SET NEW.kode_barang = CONCAT(" +id+ ", NEW.kode_barang);" +
-//                    "END;" +
-//                    "//" +
-//                    "DELIMITER ;";
-//            statement.executeUpdate(createTrigger);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    private void createTableDataBarang() {
-//        try (Statement statement = connection.createStatement()) {
-//            String createTable = "CREATE TABLE IF NOT EXISTS data_barang" +
-//                    "(id_supplier CHAR(10)," +
-//                    "kode_barang int," +
-//                    "nama_pt VARCHAR(50)," +
-//                    "nama_barang VARCHAR(50)," +
-//                    "stok int," +
-//                    "FOREIGN KEY (id_supplier) REFERENCES supplier(id_supplier)," +
-//                    "FOREIGN KEY (kode_barang) REFERENCES barang(kode_barang));";
-//            statement.executeUpdate(createTable);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     private void insertSupplier(String idSupplier, String namaPT, String noTelp, String alamatPT) {
         try (PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO supplier (id_supplier, nama_pt, no_telp, alamat) VALUES (?, ?, ?, ?);")) {
@@ -231,20 +198,6 @@ public class BarangMasukPage extends JFrame {
             e.printStackTrace();
         }
     }
-
-//    private void insertDataBarang(String idSupplier, int kodeBarang, String namaPT, String namaBarang, int stok) {
-//        try (PreparedStatement statement = connection.prepareStatement(
-//                "INSERT INTO data_barang VALUES (?, ?, ?, ?, ?);")) {
-//            statement.setString(1, idSupplier);
-//            statement.setInt(2, kodeBarang);
-//            statement.setString(3, namaPT);
-//            statement.setString(4, namaBarang);
-//            statement.setInt(5, stok);
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void dataSupplierBarang() {
         inventory = new Inventory();
